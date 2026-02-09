@@ -133,6 +133,55 @@ body{
 .ico .accent{fill:#d4a06a}.ico .glass{fill:#dbe8f4;stroke:#8bafc8;stroke-width:0.8}
 .ico .red{fill:#d47070;stroke:#a04040;stroke-width:1}
 .ico .gold{fill:#e8c864;stroke:#b8962e;stroke-width:0.8}
+
+/* Transport section */
+.transport-header{padding:32px 24px 20px;text-align:center}
+.transport-header h2{font-size:26px;font-weight:800;color:#003688;letter-spacing:2px}
+.transport-header .transport-en{font-size:36px;font-weight:800;letter-spacing:4px;opacity:0.10;
+  position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;color:#003688}
+.transport-header p{font-size:13px;color:#666;margin-top:8px;line-height:1.8;text-align:left}
+
+.tube-map-container{background:#fff;border-radius:16px;margin:0 16px 16px;padding:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden}
+.tube-map-container h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.tube-map-scroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:8px;
+  max-height:400px;position:relative}
+.tube-map-scroll img{width:200%;min-width:600px;display:block}
+.tube-map-hint{font-size:11px;color:#999;text-align:center;margin-top:8px}
+
+.transport-day{margin:20px 16px 12px;display:inline-block;padding:6px 16px;border-radius:20px;
+  font-size:12px;font-weight:700;color:#fff;background:linear-gradient(135deg,#003688,#0019a8)}
+
+.transport-card{background:#fff;border-radius:16px;margin:0 16px 12px;padding:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.transport-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+
+.transport-step{display:flex;align-items:flex-start;padding:8px 0;position:relative}
+.transport-step+.transport-step{border-top:1px dashed #e8e4dc}
+.step-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;margin-right:10px;font-size:13px}
+.step-info{flex:1;font-size:13px;line-height:1.6}
+.step-station{font-weight:600}
+.step-walk{color:#888;font-size:12px}
+
+.line-tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:10px;
+  font-weight:700;color:#fff;margin-right:4px;vertical-align:middle}
+.line-central{background:#E32017}.line-circle{background:#FFD300;color:#333}
+.line-district{background:#00782A}.line-jubilee{background:#A0A5A9;color:#333}
+.line-northern{background:#000}.line-piccadilly{background:#003688}
+.line-victoria{background:#0098D4}.line-bakerloo{background:#B36305}
+.line-dlr{background:#00A4A7}.line-elizabeth{background:#6950A1}
+.line-metropolitan{background:#9B0056}
+
+.clipper-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;background:#e0f2ff;color:#005b99}
+
+.transport-tips{background:#fff;border-radius:16px;margin:16px;padding:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.transport-tips h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.tip-item{display:flex;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f5f0e8;font-size:13px;line-height:1.7}
+.tip-item:last-child{border-bottom:none}
+.tip-emoji{font-size:18px;margin-right:10px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -557,6 +606,7 @@ body{
   <button class="nav-btn" type="button" data-sec="oxford">牛津</button>
   <button class="nav-btn" type="button" data-sec="london">倫敦</button>
   <button class="nav-btn" type="button" data-sec="food">美食</button>
+  <button class="nav-btn" type="button" data-sec="transport">交通</button>
 </div>
 
 <!-- ==================== 總覽 ==================== -->
@@ -801,6 +851,156 @@ body{
     <div class="attr-title"><h3>波羅市場</h3><div class="attr-en">Borough Market</div><div class="attr-brief">倫敦最古老的食品市場</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>歷史可追溯到1014年，被譽為「倫敦的廚房」。超過100家攤販，必嚐瑞士起司吐司（Raclette）、手工麵包、新鮮生蠔。市場在鐵道高架橋下，即使下雨也有遮蔽。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-tip">17:00 打烊</span><span class="attr-tag tag-food">倫敦必訪美食市場</span></div></div></div>
+</div>
+
+<!-- ==================== 交通 ==================== -->
+<div class="section" id="sec-transport">
+  <div class="transport-header" style="position:relative">
+    <div class="transport-en">TRANSPORT</div>
+    <h2>倫敦交通指南</h2>
+    <p>倫敦地鐵（Tube）是遊覽倫敦最方便的方式。行程中的景點主要在 Zone 1-2，搭配 DLR 輕軌和泰晤士河快船（Thames Clipper），輕鬆抵達每個目的地。</p>
+  </div>
+
+  <div class="tube-map-container">
+    <h3>&#x1F687; 倫敦地鐵路線圖</h3>
+    <div class="tube-map-scroll">
+      <img src="https://tfl.gov.uk/cdn/static/cms/images/tube-map.gif" alt="London Tube Map" loading="lazy"/>
+    </div>
+    <p class="tube-map-hint">可雙指縮放、滑動查看完整地圖</p>
+  </div>
+
+  <span class="transport-day">Day 7 &middot; 2/23（一）格林威治 &amp; 倫敦塔</span>
+
+  <div class="transport-card">
+    <h4>&#x1F30D; 格林威治區域</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#e0f8f0"><span class="line-tag line-dlr">DLR</span></div>
+      <div class="step-info"><span class="step-station">Cutty Sark 站</span><br>
+        <span class="step-walk">格林威治天文臺｜步行上山約 15 分鐘</span><br>
+        <span class="step-walk">皇后宅邸｜步行 5 分鐘</span><br>
+        <span class="step-walk">卡提沙克號｜步行 2 分鐘</span><br>
+        <span class="step-walk">格林威治市集｜步行 3 分鐘</span>
+      </div>
+    </div>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#e0f2ff">&#x1F6A2;</div>
+      <div class="step-info">
+        <span class="clipper-tag">&#x1F6A2; Thames Clipper</span><br>
+        <span class="step-station">Greenwich Pier &rarr; Tower Pier</span><br>
+        <span class="step-walk">約 30 分鐘｜沿途欣賞泰晤士河兩岸風景</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x1F3F0; 倫敦塔 &amp; 塔橋</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#fff3e0"><span class="line-tag line-circle">Circle</span><span class="line-tag line-district">District</span></div>
+      <div class="step-info"><span class="step-station">Tower Hill 站</span><br>
+        <span class="step-walk">倫敦塔｜步行 5 分鐘</span><br>
+        <span class="step-walk">塔橋｜步行 8 分鐘</span>
+      </div>
+    </div>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#e0f2ff">&#x1F6A2;</div>
+      <div class="step-info">
+        <span class="step-walk">或從 Greenwich Pier 搭 Thames Clipper 到 Tower Pier，下船即達</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="transport-day">Day 8 &middot; 2/24（二）西敏區</span>
+
+  <div class="transport-card">
+    <h4>&#x1F3DB;&#xFE0F; 西敏寺 &amp; 國會大廈 &amp; 大笨鐘</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#f0f0f0"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-district">District</span><span class="line-tag line-circle">Circle</span></div>
+      <div class="step-info"><span class="step-station">Westminster 站</span><br>
+        <span class="step-walk">西敏寺｜出站即達，步行 2 分鐘</span><br>
+        <span class="step-walk">國會大廈 &amp; 大笨鐘｜步行 3 分鐘</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x1F451; 白金漢宮</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#e8f5e9"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-piccadilly">Piccadilly</span><span class="line-tag line-victoria">Victoria</span></div>
+      <div class="step-info"><span class="step-station">Green Park 站</span><span class="step-walk">｜步行 10 分鐘穿過公園</span><br>
+        <span class="step-walk">或 <span class="step-station">St James's Park 站</span>（<span class="line-tag line-district">District</span><span class="line-tag line-circle">Circle</span>）步行 8 分鐘</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x1F3A1; 倫敦眼</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#f3e5f5"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-northern">Northern</span><span class="line-tag line-bakerloo">Bakerloo</span></div>
+      <div class="step-info"><span class="step-station">Waterloo 站</span><span class="step-walk">｜步行 5 分鐘</span><br>
+        <span class="step-walk">或從 Westminster 站步行過橋約 10 分鐘</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x26A1; 國王十字 9&frac34; 月台</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#fce4ec"><span class="line-tag line-victoria">Victoria</span><span class="line-tag line-piccadilly">Piccadilly</span><span class="line-tag line-northern">Northern</span><span class="line-tag line-metropolitan">Metropolitan</span></div>
+      <div class="step-info"><span class="step-station">King's Cross St Pancras 站</span><br>
+        <span class="step-walk">9&frac34; 月台｜出站步行 2 分鐘，在車站大廳內</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="transport-day">Day 9 &middot; 2/25（三）博物館與公園</span>
+
+  <div class="transport-card">
+    <h4>&#x26EA; 聖保羅大教堂 &amp; 千禧橋</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#fce4ec"><span class="line-tag line-central">Central</span></div>
+      <div class="step-info"><span class="step-station">St Paul's 站</span><br>
+        <span class="step-walk">聖保羅大教堂｜出站即達，步行 2 分鐘</span><br>
+        <span class="step-walk">千禧橋｜步行 5 分鐘</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x1F3DB;&#xFE0F; 大英博物館</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#f3e5f5"><span class="line-tag line-central">Central</span><span class="line-tag line-piccadilly">Piccadilly</span></div>
+      <div class="step-info"><span class="step-station">Holborn 站</span><span class="step-walk">｜步行 5 分鐘</span><br>
+        <span class="step-walk">或 <span class="step-station">Tottenham Court Road 站</span>（<span class="line-tag line-central">Central</span><span class="line-tag line-northern">Northern</span><span class="line-tag line-elizabeth">Elizabeth</span>）步行 5 分鐘</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x1F333; 攝政公園 &amp; 倫敦動物園</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#e8f5e9"><span class="line-tag line-northern">Northern</span></div>
+      <div class="step-info"><span class="step-station">Camden Town 站</span><span class="step-walk">｜步行 10 分鐘到動物園</span><br>
+        <span class="step-walk">或 <span class="step-station">Regent's Park 站</span>（<span class="line-tag line-bakerloo">Bakerloo</span>）步行 10 分鐘</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transport-card">
+    <h4>&#x1F6D2; 波羅市場</h4>
+    <div class="transport-step">
+      <div class="step-icon" style="background:#f0f0f0"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-northern">Northern</span></div>
+      <div class="step-info"><span class="step-station">London Bridge 站</span><span class="step-walk">｜步行 3 分鐘</span></div>
+    </div>
+  </div>
+
+  <div class="transport-tips">
+    <h3>&#x1F4A1; 交通小提示</h3>
+    <div class="tip-item"><span class="tip-emoji">&#x1F4B3;</span><div>直接用<strong>感應式信用卡／Apple Pay</strong> 進出站即可，不需要買 Oyster Card。每日自動封頂 Zone 1-2 約 &pound;8.10。</div></div>
+    <div class="tip-item"><span class="tip-emoji">&#x1F688;</span><div><strong>DLR 輕軌</strong>是無人駕駛列車，小朋友可以坐在最前排車頭，假裝自己是司機！格林威治就是搭 DLR 前往。</div></div>
+    <div class="tip-item"><span class="tip-emoji">&#x1F6A2;</span><div><strong>Thames Clipper</strong> 河船用感應卡搭乘有折扣（約 &pound;8 單程）。Greenwich Pier &rarr; Tower Pier 約 30 分鐘，沿途可看金絲雀碼頭天際線。</div></div>
+    <div class="tip-item"><span class="tip-emoji">&#x23F0;</span><div>地鐵<strong>尖峰時間</strong>約 07:30-09:30 和 16:30-19:00，盡量避開。帶小朋友建議離峰時段搭乘比較舒適。</div></div>
+    <div class="tip-item"><span class="tip-emoji">&#x267F;</span><div>並非所有地鐵站都有<strong>無障礙設施</strong>。推嬰兒車建議查看 TfL Step-free 地圖。Westminster、King's Cross、London Bridge 站有電梯。</div></div>
+  </div>
 </div>
 
 <!-- ==================== 美食 ==================== -->
