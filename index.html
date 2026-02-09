@@ -195,6 +195,23 @@ body{
   font-size:11px;font-weight:600;background:#e8f5e9;color:#1b7a2b;text-decoration:none;
   margin-top:4px;margin-right:4px;transition:background 0.2s}
 .map-link:active{background:#c8e6c9}
+
+/* Hotel neighborhood */
+.hotel-card{background:#fff;border-radius:16px;margin:12px 0;box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden}
+.hotel-header{padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hotel-name{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.hotel-addr{font-size:12px;color:#888;margin-top:2px}
+.hotel-arrow{float:right;font-size:14px;color:#ccc;transition:transform 0.3s}
+.hotel-card.expanded .hotel-arrow{transform:rotate(90deg);color:#666}
+.hotel-detail{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
+.hotel-card.expanded .hotel-detail{max-height:1200px}
+.hotel-detail-inner{padding:0 16px 16px;border-top:1px solid #f0ece4}
+.hotel-detail-inner p{font-size:13px;color:#555;line-height:1.9;margin-top:12px}
+.nearby-item{display:flex;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f5f0e8;font-size:13px;line-height:1.6}
+.nearby-item:last-child{border-bottom:none}
+.nearby-emoji{font-size:16px;margin-right:8px;flex-shrink:0}
+.nearby-name{font-weight:600}
+.nearby-desc{color:#888;font-size:12px}
 </style>
 </head>
 <body>
@@ -667,6 +684,52 @@ body{
     <div class="info-row"><span class="info-label">Oxford (D3-5)</span><span class="info-value">63 St Clement's St<br><a class="map-link" href="https://maps.google.com/?q=63+St+Clement's+Street+Oxford" target="_blank">&#x1F4CD; 地圖</a></span></div>
     <div class="info-row"><span class="info-label">London (D6-9)</span><span class="info-value">Royal Eagle Hotel<br><a class="map-link" href="https://maps.google.com/?q=Royal+Eagle+Hotel+London" target="_blank">&#x1F4CD; 地圖</a></span></div>
   </div>
+
+  <div class="hotel-card"><div class="hotel-header">
+    <span class="hotel-arrow">&#x276F;</span>
+    <div class="hotel-name">&#x1F6C1; Apex City of Bath Hotel</div>
+    <div class="hotel-addr">1 James St W, Bath BA1 2DA</div></div>
+    <div class="hotel-detail"><div class="hotel-detail-inner">
+      <p>位於巴斯市中心最精華地段，步行即可到達所有主要景點。飯店正對面就是 Thermae Bath Spa（天然溫泉 SPA），是巴斯唯一可以泡溫泉的地方。</p>
+      <div class="nearby-item"><span class="nearby-emoji">&#x26F2;</span><div><span class="nearby-name">Thermae Bath Spa</span><br><span class="nearby-desc">步行 1 分鐘｜天然溫泉 SPA，屋頂露天池可俯瞰城市</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F3DB;&#xFE0F;</span><div><span class="nearby-name">羅馬浴場 &amp; 修道院</span><br><span class="nearby-desc">步行 2 分鐘｜巴斯最重要的兩個景點就在隔壁</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F6CD;&#xFE0F;</span><div><span class="nearby-name">Milsom Street 購物街</span><br><span class="nearby-desc">步行 5 分鐘｜巴斯的主要購物大街，品牌店與精品咖啡廳</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F35F;</span><div><span class="nearby-name">Sally Lunn's</span><br><span class="nearby-desc">步行 3 分鐘｜巴斯最古老的餐廳（1482年），必嚐招牌圓麵包</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F6D2;</span><div><span class="nearby-name">市政廳市集</span><br><span class="nearby-desc">步行 3 分鐘｜買早餐、小吃和在地土產的好地方</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F687;</span><div><span class="nearby-name">Bath Spa 火車站</span><br><span class="nearby-desc">步行 5 分鐘｜前往牛津的出發點</span></div></div>
+    </div></div>
+  </div>
+
+  <div class="hotel-card"><div class="hotel-header">
+    <span class="hotel-arrow">&#x276F;</span>
+    <div class="hotel-name">&#x1F4DA; 63 St Clement's St, Oxford</div>
+    <div class="hotel-addr">63 St Clement's Street, Oxford OX4 1AG</div></div>
+    <div class="hotel-detail"><div class="hotel-detail-inner">
+      <p>位於牛津市中心東側的 St Clement's 街區，步行過 Magdalen Bridge 就到牛津古城核心。這一帶是牛津在地人喜歡的生活街區，餐廳、酒吧選擇多元且價格合理。</p>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F309;</span><div><span class="nearby-name">Magdalen Bridge</span><br><span class="nearby-desc">步行 3 分鐘｜過橋即進入牛津古城，可沿河看撐篙船</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F3EB;</span><div><span class="nearby-name">牛津大學植物園</span><br><span class="nearby-desc">步行 5 分鐘｜英國最古老的植物園，4,500 種以上植物</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F37D;&#xFE0F;</span><div><span class="nearby-name">The Rusty Bicycle</span><br><span class="nearby-desc">步行 2 分鐘｜當地人氣 Gastropub，精釀啤酒＋英式料理</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F355;</span><div><span class="nearby-name">Kazbar &amp; Magdalen Arms</span><br><span class="nearby-desc">步行 3 分鐘｜西班牙小酒館 &amp; 英式酒館，晚餐好選擇</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F6D2;</span><div><span class="nearby-name">Tesco Express &amp; Co-op</span><br><span class="nearby-desc">步行 1 分鐘｜街上有便利商店，買水、零食和早餐方便</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F6B6;</span><div><span class="nearby-name">基督學院</span><br><span class="nearby-desc">步行 12 分鐘｜穿過古城中心，沿途經過許多學院建築</span></div></div>
+    </div></div>
+  </div>
+
+  <div class="hotel-card"><div class="hotel-header">
+    <span class="hotel-arrow">&#x276F;</span>
+    <div class="hotel-name">&#x1F3E9; Royal Eagle Hotel, London</div>
+    <div class="hotel-addr">26-30 Craven Rd, Paddington, London W2 3QB</div></div>
+    <div class="hotel-detail"><div class="hotel-detail-inner">
+      <p>位於 Paddington 車站旁的 Craven Road，是倫敦交通最方便的住宿地點之一。Paddington 站有 Heathrow Express 直達機場（15 分鐘），多條地鐵線出發到各景點都很快。周邊是典型的倫敦白色排屋街區。</p>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F687;</span><div><span class="nearby-name">Paddington 站</span><br><span class="nearby-desc">步行 3 分鐘｜Bakerloo、Circle、District、Hammersmith、Elizabeth Line</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x2708;&#xFE0F;</span><div><span class="nearby-name">Heathrow Express</span><br><span class="nearby-desc">從 Paddington 站直達機場僅 15 分鐘，最後一天退房超方便</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F333;</span><div><span class="nearby-name">Hyde Park &amp; Kensington Gardens</span><br><span class="nearby-desc">步行 5 分鐘｜倫敦最大的皇家公園，早晨散步或遛小孩</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F37D;&#xFE0F;</span><div><span class="nearby-name">Craven Road 餐廳街</span><br><span class="nearby-desc">飯店門口整排餐廳：印度菜、中東菜、義大利菜、炸魚薯條</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F6D2;</span><div><span class="nearby-name">Sainsbury's &amp; M&amp;S Food</span><br><span class="nearby-desc">步行 3 分鐘｜Paddington 站內有超市，買早餐和零食</span></div></div>
+      <div class="nearby-item"><span class="nearby-emoji">&#x1F6A4;</span><div><span class="nearby-name">Little Venice</span><br><span class="nearby-desc">步行 8 分鐘｜運河旁的悠閒水上社區，有窄船咖啡廳</span></div></div>
+    </div></div>
+  </div>
+
   <div class="info-card"><h3>&#x1F4B0; London Pass</h3>
     <div class="info-row"><span class="info-label">天數</span><span class="info-value">2 日券</span></div>
     <div class="info-row"><span class="info-label">價格</span><span class="info-value">成人 &pound;114</span></div>
@@ -1091,6 +1154,25 @@ body{
         showSection(btn.getAttribute('data-sec'), btn);
       }, false);
     })(navBtns[i]);
+  }
+
+  /* --- Hotel card toggle (iOS-safe) --- */
+  var hotelHeaders = document.querySelectorAll('.hotel-header');
+  for(var i=0;i<hotelHeaders.length;i++){
+    (function(hdr){
+      hdr.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var card = hdr.parentElement;
+        var wasExpanded = card.classList.contains('expanded');
+        var siblings = document.querySelectorAll('.hotel-card.expanded');
+        for(var j=0;j<siblings.length;j++){
+          if(siblings[j]!==card) siblings[j].classList.remove('expanded');
+        }
+        if(wasExpanded) card.classList.remove('expanded');
+        else card.classList.add('expanded');
+      }, false);
+    })(hotelHeaders[i]);
   }
 
   /* --- Attraction card toggle (iOS-safe) --- */
