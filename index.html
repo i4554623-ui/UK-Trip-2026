@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>英國11日親子之旅 2026.02.17-02.27</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  background:#f5f0e8;color:#2c2c2c;line-height:1.7;
+  max-width:480px;margin:0 auto;padding-bottom:60px;
+  -webkit-text-size-adjust:100%;
+}
+/* Hero */
+.hero{
+  background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 50%,#4a90bf 100%);
+  color:#fff;padding:48px 24px 36px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(ellipse at 30% 50%,rgba(255,255,255,0.08) 0%,transparent 60%);}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:2px;margin-bottom:8px;position:relative}
+.hero .subtitle{font-size:14px;opacity:0.85;position:relative}
+.hero .dates{display:inline-block;margin-top:16px;padding:8px 20px;border:2px solid rgba(255,255,255,0.6);
+  border-radius:30px;font-size:15px;font-weight:600;letter-spacing:1px;position:relative;}
+.hero .members{margin-top:12px;font-size:12px;opacity:0.7;position:relative}
+.flag{font-size:32px;margin-bottom:8px;display:block;position:relative}
+
+/* Nav */
+.nav{display:flex;position:sticky;top:0;z-index:100;background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.nav-btn{flex:1;min-width:0;padding:14px 6px;text-align:center;font-size:13px;font-weight:600;
+  color:#666;background:none;border:none;border-bottom:3px solid transparent;
+  cursor:pointer;transition:all 0.3s;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  -webkit-appearance:none;appearance:none;}
+.nav-btn.active{color:#1a3a5c;border-bottom-color:#2d6a9f}
+
+/* Sections */
+.section{display:none;padding:0 16px 24px}
+.section.active{display:block}
+
+/* Overview */
+.overview-card{background:#fff;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.day-summary{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f0ece4}
+.day-summary:last-child{border-bottom:none}
+.day-num{background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:#fff;width:44px;height:44px;
+  border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;
+  font-weight:700;flex-shrink:0;margin-right:12px;flex-direction:column;line-height:1.2}
+.day-num span{font-size:16px}
+.day-info h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.day-info p{font-size:12px;color:#888}
+
+/* City header */
+.city-header{padding:32px 24px 20px;text-align:center;position:relative}
+.city-header h2{font-size:26px;font-weight:800;letter-spacing:3px}
+.city-header .city-en{font-size:36px;font-weight:800;letter-spacing:4px;opacity:0.12;
+  position:absolute;top:16px;left:50%;transform:translateX(-50%);white-space:nowrap}
+.city-header .city-desc{font-size:13px;color:#666;margin-top:8px;line-height:1.8;text-align:left}
+.city-bath .city-header h2,.city-bath .city-header .city-en{color:#c17f3e}
+.city-oxford .city-header h2,.city-oxford .city-header .city-en{color:#1a5fb4}
+.city-london .city-header h2,.city-london .city-header .city-en{color:#b02a2a}
+
+/* Attraction card */
+.attr-card{background:#fff;border-radius:16px;margin-bottom:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden;transition:box-shadow 0.3s}
+.attr-card.expanded{box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.attr-header{display:flex;align-items:center;padding:16px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.attr-icon{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;margin-right:12px;overflow:hidden}
+.attr-icon svg{width:54px;height:54px}
+.city-bath .attr-icon{background:#fdf2e4}
+.city-oxford .attr-icon{background:#e8f0fc}
+.city-london .attr-icon{background:#fce8e8}
+.icon-greenwich{background:#e8f5e8 !important}
+
+.attr-title{flex:1;min-width:0}
+.attr-title h3{font-size:15px;font-weight:700}
+.attr-title .attr-en{font-size:11px;color:#999;margin-top:1px}
+.attr-title .attr-brief{font-size:12px;color:#666;margin-top:4px}
+.attr-arrow{font-size:14px;color:#ccc;transition:transform 0.3s;margin-left:8px;flex-shrink:0}
+.attr-card.expanded .attr-arrow{transform:rotate(90deg);color:#666}
+
+.attr-detail{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
+.attr-card.expanded .attr-detail{max-height:900px}
+.attr-detail-inner{padding:0 16px 16px;border-top:1px solid #f0ece4}
+.attr-detail-inner p{font-size:13px;color:#555;line-height:1.9;margin-top:12px}
+.attr-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;
+  font-weight:600;margin-top:12px;margin-right:6px}
+.tag-price{background:#fff3e0;color:#e65100}
+.tag-free{background:#e8f5e9;color:#2e7d32}
+.tag-tip{background:#e3f2fd;color:#1565c0}
+.tag-pass{background:#f3e5f5;color:#7b1fa2}
+.tag-food{background:#fff8e1;color:#f57f17}
+.tag-kid{background:#fce4ec;color:#c62828}
+
+/* Day label */
+.day-label{display:inline-block;padding:6px 16px;border-radius:20px;font-size:12px;
+  font-weight:700;margin:20px 0 12px;color:#fff}
+.city-bath .day-label{background:linear-gradient(135deg,#c17f3e,#d4a06a)}
+.city-oxford .day-label{background:linear-gradient(135deg,#1a5fb4,#4a8fd4)}
+.city-london .day-label{background:linear-gradient(135deg,#b02a2a,#d45050)}
+
+/* Food */
+.food-card{background:linear-gradient(135deg,#fff9f0,#fff);border:1px solid #f0e6d4;
+  border-radius:16px;padding:20px;margin:16px 0}
+.food-card h3{font-size:15px;margin-bottom:12px}
+.food-item{display:flex;align-items:center;padding:8px 0}
+.food-item .food-emoji{font-size:20px;margin-right:10px}
+.food-item .food-name{font-size:13px;font-weight:600}
+.food-item .food-name-en{font-size:11px;color:#999;margin-left:6px}
+
+/* Info card */
+.info-card{background:#fff;border-radius:16px;padding:20px;margin:16px 0;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.info-card h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f5f0e8;font-size:13px}
+.info-row:last-child{border-bottom:none}
+.info-label{color:#888;flex-shrink:0}
+.info-value{font-weight:600;text-align:right;max-width:60%}
+
+.london-day-divider{display:flex;align-items:center;margin:24px 0 16px;gap:12px}
+.london-day-divider::before,.london-day-divider::after{content:'';flex:1;height:1px;background:#e0d8cc}
+.london-day-divider span{font-size:13px;font-weight:700;color:#888;white-space:nowrap}
+
+.footer{text-align:center;padding:32px 24px;color:#aaa;font-size:11px}
+
+/* SVG common style */
+.ico{fill:none;stroke:#4a3f35;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ico .w{fill:#faf5eb}.ico .water{fill:#d4e8f0;stroke:#8bbad4;stroke-width:1}
+.ico .roof{fill:#e8d5b8}.ico .green{fill:#c8deb8;stroke:#7aaa6a;stroke-width:1}
+.ico .accent{fill:#d4a06a}.ico .glass{fill:#dbe8f4;stroke:#8bafc8;stroke-width:0.8}
+.ico .red{fill:#d47070;stroke:#a04040;stroke-width:1}
+.ico .gold{fill:#e8c864;stroke:#b8962e;stroke-width:0.8}
+</style>
+</head>
+<body>
+
+<!-- Hidden SVG symbol definitions -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+<!-- BATH -->
+<symbol id="i-crescent" viewBox="0 0 80 80" class="ico">
+  <path d="M8,58 Q14,30 40,26 Q66,30 72,58" class="w" stroke="#4a3f35" stroke-width="1.5" fill="#faf5eb"/>
+  <line x1="18" y1="58" x2="18" y2="38" /><line x1="26" y1="58" x2="26" y2="32" />
+  <line x1="34" y1="58" x2="34" y2="28" /><line x1="40" y1="58" x2="40" y2="26" />
+  <line x1="46" y1="58" x2="46" y2="28" /><line x1="54" y1="58" x2="54" y2="32" />
+  <line x1="62" y1="58" x2="62" y2="38" />
+  <rect x="6" y="58" width="68" height="4" rx="1" class="w"/>
+  <path d="M10,66 Q40,62 70,66" class="green" fill="#c8deb8"/>
+</symbol>
+
+<symbol id="i-pulteney" viewBox="0 0 80 80" class="ico">
+  <rect x="10" y="20" width="60" height="26" rx="2" class="w"/>
+  <rect x="18" y="24" width="8" height="10" rx="1" class="glass"/>
+  <rect x="36" y="24" width="8" height="10" rx="1" class="glass"/>
+  <rect x="54" y="24" width="8" height="10" rx="1" class="glass"/>
+  <path d="M10,46 Q25,56 25,46" /><path d="M25,46 Q40,56 40,46" /><path d="M40,46 Q55,56 55,46" />
+  <path d="M55,46 Q70,56 70,46" />
+  <rect x="4" y="54" width="72" height="10" rx="1" class="water"/>
+  <line x1="10" y1="18" x2="70" y2="18" stroke-width="2"/>
+  <polygon points="30,20 40,12 50,20" class="roof"/>
+</symbol>
+
+<symbol id="i-guildhall" viewBox="0 0 80 80" class="ico">
+  <rect x="14" y="28" width="52" height="34" rx="2" class="w"/>
+  <polygon points="10,28 40,10 70,28" class="roof"/>
+  <rect x="32" y="42" width="16" height="20" rx="1" class="accent"/>
+  <rect x="20" y="34" width="10" height="12" rx="1" class="glass"/>
+  <rect x="50" y="34" width="10" height="12" rx="1" class="glass"/>
+  <circle cx="44" cy="52" r="1.5"/>
+  <line x1="14" y1="62" x2="66" y2="62"/>
+  <rect x="24" y="64" width="6" height="4" class="accent"/>
+  <rect x="36" y="64" width="8" height="4" class="accent"/>
+  <rect x="50" y="64" width="6" height="4" class="accent"/>
+</symbol>
+
+<symbol id="i-romanbaths" viewBox="0 0 80 80" class="ico">
+  <rect x="8" y="40" width="64" height="24" rx="2" class="water"/>
+  <line x1="16" y1="40" x2="16" y2="18" stroke-width="2"/>
+  <line x1="32" y1="40" x2="32" y2="18" stroke-width="2"/>
+  <line x1="48" y1="40" x2="48" y2="18" stroke-width="2"/>
+  <line x1="64" y1="40" x2="64" y2="18" stroke-width="2"/>
+  <path d="M16,18 Q24,10 32,18" /><path d="M32,18 Q40,10 48,18" /><path d="M48,18 Q56,10 64,18" />
+  <line x1="12" y1="16" x2="68" y2="16" stroke-width="1"/>
+  <path d="M20,50 Q30,46 40,50 Q50,54 60,50" stroke="#8bbad4" stroke-width="1" fill="none"/>
+  <circle cx="26" cy="56" r="2" fill="#8bbad4" opacity="0.4"/>
+  <circle cx="52" cy="54" r="1.5" fill="#8bbad4" opacity="0.4"/>
+</symbol>
+
+<symbol id="i-bathabbey" viewBox="0 0 80 80" class="ico">
+  <rect x="24" y="20" width="32" height="46" rx="1" class="w"/>
+  <path d="M28,20 L40,6 L52,20" class="roof"/>
+  <path d="M32,24 Q40,16 48,24 L48,44 L32,44 Z" class="glass"/>
+  <line x1="40" y1="20" x2="40" y2="44" stroke-width="0.8"/>
+  <line x1="32" y1="34" x2="48" y2="34" stroke-width="0.8"/>
+  <rect x="36" y="48" width="8" height="18" rx="1" class="accent"/>
+  <rect x="14" y="30" width="10" height="36" rx="1" class="w"/>
+  <rect x="56" y="30" width="10" height="36" rx="1" class="w"/>
+  <polygon points="14,30 19,22 24,30" /><polygon points="56,30 61,22 66,30" />
+  <line x1="40" y1="2" x2="40" y2="6" stroke-width="1.5"/>
+  <line x1="38" y1="4" x2="42" y2="4" stroke-width="1.5"/>
+</symbol>
+
+<!-- OXFORD -->
+<symbol id="i-christchurch" viewBox="0 0 80 80" class="ico">
+  <rect x="28" y="8" width="24" height="58" rx="1" class="w"/>
+  <path d="M28,8 L40,2 L52,8" class="roof"/>
+  <rect x="22" y="38" width="36" height="28" rx="1" class="w"/>
+  <path d="M30,38 Q40,30 50,38" class="accent"/>
+  <rect x="36" y="48" width="8" height="18" rx="1" class="accent"/>
+  <rect x="32" y="14" width="6" height="8" rx="3" class="glass"/>
+  <rect x="42" y="14" width="6" height="8" rx="3" class="glass"/>
+  <rect x="32" y="26" width="16" height="8" rx="1" class="glass"/>
+  <circle cx="44" cy="56" r="1"/>
+  <line x1="40" y1="0" x2="40" y2="2" stroke-width="1.5"/>
+</symbol>
+
+<symbol id="i-radcliffe" viewBox="0 0 80 80" class="ico">
+  <ellipse cx="40" cy="52" rx="28" ry="16" class="w"/>
+  <rect x="14" y="36" width="52" height="18" rx="1" class="w"/>
+  <line x1="20" y1="36" x2="20" y2="54"/><line x1="30" y1="36" x2="30" y2="54"/>
+  <line x1="40" y1="36" x2="40" y2="54"/><line x1="50" y1="36" x2="50" y2="54"/>
+  <line x1="60" y1="36" x2="60" y2="54"/>
+  <path d="M18,36 Q40,10 62,36" class="roof"/>
+  <ellipse cx="40" cy="22" rx="10" ry="6" class="w"/>
+  <line x1="40" y1="12" x2="40" y2="16"/>
+  <circle cx="40" cy="11" r="2" class="gold"/>
+</symbol>
+
+<symbol id="i-sighs" viewBox="0 0 80 80" class="ico">
+  <rect x="4" y="14" width="24" height="52" rx="1" class="w"/>
+  <rect x="52" y="14" width="24" height="52" rx="1" class="w"/>
+  <rect x="10" y="20" width="12" height="10" rx="1" class="glass"/>
+  <rect x="10" y="36" width="12" height="10" rx="1" class="glass"/>
+  <rect x="58" y="20" width="12" height="10" rx="1" class="glass"/>
+  <rect x="58" y="36" width="12" height="10" rx="1" class="glass"/>
+  <path d="M28,26 Q40,18 52,26 L52,42 L28,42 Z" class="w"/>
+  <rect x="34" y="30" width="12" height="8" rx="1" class="glass"/>
+  <line x1="28" y1="42" x2="52" y2="42" stroke-width="1.5"/>
+</symbol>
+
+<symbol id="i-blackwell" viewBox="0 0 80 80" class="ico">
+  <rect x="12" y="22" width="56" height="42" rx="2" class="w"/>
+  <polygon points="8,22 40,8 72,22" class="roof"/>
+  <rect x="30" y="44" width="14" height="20" rx="1" class="accent"/>
+  <rect x="18" y="28" width="10" height="14" rx="1" class="glass"/>
+  <rect x="52" y="28" width="10" height="14" rx="1" class="glass"/>
+  <rect x="20" y="48" width="6" height="10" rx="0.5" fill="#d4a06a" stroke="#4a3f35" stroke-width="0.8"/>
+  <rect x="54" y="48" width="6" height="10" rx="0.5" fill="#8bafc8" stroke="#4a3f35" stroke-width="0.8"/>
+  <rect x="46" y="50" width="5" height="8" rx="0.5" fill="#c8deb8" stroke="#4a3f35" stroke-width="0.8"/>
+</symbol>
+
+<symbol id="i-coveredmarket" viewBox="0 0 80 80" class="ico">
+  <rect x="10" y="28" width="60" height="38" rx="1" class="w"/>
+  <polygon points="6,28 40,12 74,28" class="roof"/>
+  <path d="M20,28 L20,66" /><path d="M40,28 L40,66" /><path d="M60,28 L60,66" />
+  <rect x="24" y="46" width="12" height="8" rx="1" class="accent"/>
+  <rect x="44" y="46" width="12" height="8" rx="1" fill="#c8deb8" stroke="#4a3f35"/>
+  <rect x="24" y="34" width="12" height="8" rx="1" class="glass"/>
+  <rect x="44" y="34" width="12" height="8" rx="1" class="glass"/>
+  <circle cx="40" cy="58" r="3" class="gold"/>
+</symbol>
+
+<symbol id="i-oxcastle" viewBox="0 0 80 80" class="ico">
+  <rect x="24" y="18" width="32" height="48" rx="1" class="w"/>
+  <rect x="10" y="28" width="16" height="38" rx="1" class="w"/>
+  <rect x="54" y="28" width="16" height="38" rx="1" class="w"/>
+  <polygon points="10,28 18,18 26,28" class="roof"/>
+  <polygon points="54,28 62,18 70,28" class="roof"/>
+  <rect x="12" y="10" width="4" height="8" class="w"/><rect x="20" y="10" width="4" height="8" class="w"/>
+  <rect x="56" y="10" width="4" height="8" class="w"/><rect x="64" y="10" width="4" height="8" class="w"/>
+  <rect x="36" y="46" width="8" height="20" rx="1" class="accent"/>
+  <path d="M36,46 Q40,40 44,46" class="accent"/>
+  <rect x="32" y="24" width="16" height="12" rx="1" class="glass"/>
+</symbol>
+
+<symbol id="i-grandcafe" viewBox="0 0 80 80" class="ico">
+  <ellipse cx="40" cy="56" rx="20" ry="6" class="w"/>
+  <ellipse cx="40" cy="44" rx="14" ry="4" class="w"/>
+  <ellipse cx="40" cy="34" rx="10" ry="3" class="w"/>
+  <line x1="40" y1="37" x2="40" y2="50"/>
+  <line x1="40" y1="50" x2="40" y2="56"/>
+  <rect x="28" y="26" width="6" height="6" rx="1" fill="#e8d5b8" stroke="#4a3f35"/>
+  <circle cx="40" cy="28" r="3" class="accent"/>
+  <rect x="46" y="24" width="6" height="8" rx="1" fill="#c8deb8" stroke="#4a3f35"/>
+  <path d="M22,52 Q16,48 18,42" stroke-width="1.2" fill="none"/>
+  <path d="M14,54 C10,54 8,48 14,44" stroke-width="1" fill="none" stroke="#8bbad4"/>
+</symbol>
+
+<symbol id="i-nathistory" viewBox="0 0 80 80" class="ico">
+  <rect x="10" y="30" width="60" height="36" rx="1" class="w"/>
+  <polygon points="6,30 40,12 74,30" class="roof"/>
+  <line x1="22" y1="30" x2="22" y2="66" stroke-width="2"/>
+  <line x1="34" y1="30" x2="34" y2="66" stroke-width="2"/>
+  <line x1="46" y1="30" x2="46" y2="66" stroke-width="2"/>
+  <line x1="58" y1="30" x2="58" y2="66" stroke-width="2"/>
+  <path d="M30,56 C30,48 38,44 40,52 C42,44 50,48 50,56" fill="#c8deb8" stroke="#4a3f35" stroke-width="0.8"/>
+  <rect x="36" y="56" width="8" height="10" rx="1" class="accent"/>
+  <polygon points="36,14 40,8 44,14" class="gold"/>
+</symbol>
+
+<!-- LONDON - Greenwich -->
+<symbol id="i-observatory" viewBox="0 0 80 80" class="ico">
+  <path d="M6,60 Q20,42 40,38 Q60,42 74,60" class="green"/>
+  <rect x="26" y="28" width="28" height="24" rx="1" class="w"/>
+  <path d="M30,28 Q40,14 50,28" class="roof"/>
+  <circle cx="40" cy="20" r="6" class="w"/>
+  <line x1="40" y1="14" x2="40" y2="10"/><line x1="37" y1="11" x2="43" y2="11"/>
+  <rect x="32" y="36" width="6" height="10" rx="1" class="glass"/>
+  <rect x="42" y="36" width="6" height="10" rx="1" class="glass"/>
+  <line x1="40" y1="52" x2="40" y2="60" stroke="#b02a2a" stroke-width="2"/>
+</symbol>
+
+<symbol id="i-queenshouse" viewBox="0 0 80 80" class="ico">
+  <rect x="10" y="30" width="60" height="32" rx="1" class="w"/>
+  <line x1="10" y1="30" x2="70" y2="30" stroke-width="2"/>
+  <line x1="20" y1="30" x2="20" y2="62" /><line x1="30" y1="30" x2="30" y2="62" />
+  <line x1="40" y1="30" x2="40" y2="62" /><line x1="50" y1="30" x2="50" y2="62" />
+  <line x1="60" y1="30" x2="60" y2="62" />
+  <rect x="36" y="48" width="8" height="14" rx="1" class="accent"/>
+  <polygon points="10,30 40,16 70,30" class="w" fill="#faf5eb"/>
+  <line x1="10" y1="30" x2="40" y2="16" /><line x1="40" y1="16" x2="70" y2="30" />
+  <rect x="8" y="62" width="64" height="3" rx="1" class="w"/>
+</symbol>
+
+<symbol id="i-cuttysark" viewBox="0 0 80 80" class="ico">
+  <path d="M12,52 L20,58 L60,58 L68,52" class="w" fill="#e8d5b8"/>
+  <line x1="26" y1="58" x2="26" y2="16"/><line x1="44" y1="58" x2="44" y2="12"/>
+  <line x1="58" y1="58" x2="58" y2="20"/>
+  <polygon points="26,16 26,28 12,28" fill="#faf5eb" stroke="#4a3f35" stroke-width="1"/>
+  <polygon points="44,12 44,30 26,30" fill="#faf5eb" stroke="#4a3f35" stroke-width="1"/>
+  <polygon points="44,14 44,28 58,28" fill="#faf5eb" stroke="#4a3f35" stroke-width="1"/>
+  <polygon points="58,20 58,34 68,34" fill="#faf5eb" stroke="#4a3f35" stroke-width="1"/>
+  <line x1="16" y1="42" x2="64" y2="42" stroke-width="0.6"/>
+  <line x1="18" y1="48" x2="62" y2="48" stroke-width="0.6"/>
+  <rect x="8" y="60" width="64" height="6" rx="1" class="water"/>
+</symbol>
+
+<symbol id="i-greenwichmarket" viewBox="0 0 80 80" class="ico">
+  <polygon points="8,30 40,14 72,30" class="roof"/>
+  <line x1="8" y1="30" x2="8" y2="64" /><line x1="72" y1="30" x2="72" y2="64" />
+  <line x1="8" y1="30" x2="72" y2="30" stroke-width="2"/>
+  <rect x="14" y="40" width="14" height="20" rx="1" fill="#fdf2e4" stroke="#4a3f35"/>
+  <rect x="33" y="40" width="14" height="20" rx="1" fill="#e8f0fc" stroke="#4a3f35"/>
+  <rect x="52" y="40" width="14" height="20" rx="1" fill="#fce8e8" stroke="#4a3f35"/>
+  <circle cx="21" cy="48" r="3" class="accent"/><circle cx="40" cy="48" r="3" fill="#8bafc8"/>
+  <circle cx="59" cy="48" r="3" class="red"/>
+  <line x1="8" y1="64" x2="72" y2="64" stroke-width="1.5"/>
+</symbol>
+
+<symbol id="i-toweroflondon" viewBox="0 0 80 80" class="ico">
+  <rect x="24" y="16" width="32" height="50" rx="1" class="w"/>
+  <rect x="8" y="32" width="16" height="34" rx="1" class="w"/>
+  <rect x="56" y="32" width="16" height="34" rx="1" class="w"/>
+  <rect x="10" y="26" width="4" height="6" class="w"/><rect x="18" y="26" width="4" height="6" class="w"/>
+  <rect x="58" y="26" width="4" height="6" class="w"/><rect x="66" y="26" width="4" height="6" class="w"/>
+  <rect x="26" y="10" width="4" height="6" class="w"/><rect x="34" y="10" width="4" height="6" class="w"/>
+  <rect x="42" y="10" width="4" height="6" class="w"/><rect x="50" y="10" width="4" height="6" class="w"/>
+  <rect x="36" y="48" width="8" height="18" rx="1" class="accent"/>
+  <path d="M36,48 Q40,42 44,48"/>
+  <rect x="30" y="22" width="8" height="10" rx="1" class="glass"/>
+  <rect x="42" y="22" width="8" height="10" rx="1" class="glass"/>
+  <line x1="40" y1="12" x2="40" y2="8" stroke-width="1.5"/>
+  <circle cx="40" cy="7" r="2" class="gold"/>
+</symbol>
+
+<symbol id="i-towerbridge" viewBox="0 0 80 80" class="ico">
+  <rect x="18" y="14" width="14" height="48" rx="1" class="w"/>
+  <rect x="48" y="14" width="14" height="48" rx="1" class="w"/>
+  <polygon points="20,14 25,6 30,14" class="roof"/>
+  <polygon points="50,14 55,6 60,14" class="roof"/>
+  <rect x="32" y="20" width="16" height="4" rx="1" class="w"/>
+  <rect x="4" y="48" width="14" height="6" rx="1" class="w"/>
+  <rect x="62" y="48" width="14" height="6" rx="1" class="w"/>
+  <line x1="18" y1="38" x2="4" y2="48" stroke-width="1.5"/>
+  <line x1="62" y1="38" x2="76" y2="48" stroke-width="1.5"/>
+  <rect x="20" y="26" width="4" height="8" rx="2" class="glass"/>
+  <rect x="28" y="26" width="4" height="8" rx="2" class="glass"/>
+  <rect x="50" y="26" width="4" height="8" rx="2" class="glass"/>
+  <rect x="58" y="26" width="4" height="8" rx="2" class="glass"/>
+  <rect x="2" y="62" width="76" height="6" rx="1" class="water"/>
+</symbol>
+
+<!-- LONDON - Westminster -->
+<symbol id="i-westminster" viewBox="0 0 80 80" class="ico">
+  <rect x="20" y="20" width="40" height="46" rx="1" class="w"/>
+  <rect x="10" y="12" width="14" height="54" rx="1" class="w"/>
+  <rect x="56" y="12" width="14" height="54" rx="1" class="w"/>
+  <polygon points="10,12 17,4 24,12"/><polygon points="56,12 63,4 70,12"/>
+  <path d="M24,20 Q40,8 56,20" class="glass"/>
+  <line x1="40" y1="14" x2="40" y2="20" stroke-width="0.8"/>
+  <line x1="32" y1="18" x2="48" y2="18" stroke-width="0.8"/>
+  <rect x="36" y="50" width="8" height="16" rx="1" class="accent"/>
+  <rect x="26" y="28" width="8" height="10" rx="4" class="glass"/>
+  <rect x="46" y="28" width="8" height="10" rx="4" class="glass"/>
+</symbol>
+
+<symbol id="i-parliament" viewBox="0 0 80 80" class="ico">
+  <rect x="4" y="30" width="56" height="32" rx="1" class="w"/>
+  <rect x="60" y="10" width="14" height="52" rx="1" class="w"/>
+  <polygon points="62,10 67,2 72,10" class="roof"/>
+  <rect x="6" y="24" width="4" height="6" class="w"/><rect x="14" y="24" width="4" height="6" class="w"/>
+  <rect x="22" y="24" width="4" height="6" class="w"/><rect x="30" y="24" width="4" height="6" class="w"/>
+  <rect x="38" y="24" width="4" height="6" class="w"/><rect x="46" y="24" width="4" height="6" class="w"/>
+  <rect x="54" y="24" width="4" height="6" class="w"/>
+  <rect x="12" y="36" width="8" height="10" rx="4" class="glass"/>
+  <rect x="28" y="36" width="8" height="10" rx="4" class="glass"/>
+  <rect x="44" y="36" width="8" height="10" rx="4" class="glass"/>
+  <circle cx="67" cy="24" r="4" class="gold"/>
+  <line x1="67" y1="4" x2="67" y2="2" stroke-width="1"/>
+</symbol>
+
+<symbol id="i-buckingham" viewBox="0 0 80 80" class="ico">
+  <rect x="6" y="28" width="68" height="30" rx="1" class="w"/>
+  <rect x="30" y="22" width="20" height="8" rx="1" class="w"/>
+  <polygon points="32,22 40,16 48,22" class="roof"/>
+  <line x1="18" y1="28" x2="18" y2="58" stroke-width="2"/>
+  <line x1="30" y1="28" x2="30" y2="58" stroke-width="2"/>
+  <line x1="50" y1="28" x2="50" y2="58" stroke-width="2"/>
+  <line x1="62" y1="28" x2="62" y2="58" stroke-width="2"/>
+  <rect x="36" y="44" width="8" height="14" rx="1" class="accent"/>
+  <rect x="12" y="34" width="8" height="10" rx="1" class="glass"/>
+  <rect x="22" y="34" width="8" height="10" rx="1" class="glass"/>
+  <rect x="52" y="34" width="8" height="10" rx="1" class="glass"/>
+  <rect x="62" y="34" width="8" height="10" rx="1" class="glass"/>
+  <circle cx="40" cy="66" r="5" class="gold"/>
+  <line x1="40" y1="58" x2="40" y2="61"/>
+</symbol>
+
+<symbol id="i-bigben" viewBox="0 0 80 80" class="ico">
+  <rect x="28" y="18" width="24" height="50" rx="1" class="w"/>
+  <polygon points="32,18 40,4 48,18" class="roof"/>
+  <line x1="40" y1="2" x2="40" y2="4" stroke-width="1.5"/>
+  <circle cx="40" cy="32" r="9" fill="#fff" stroke="#4a3f35" stroke-width="1.5"/>
+  <line x1="40" y1="32" x2="40" y2="25" stroke-width="1.2"/>
+  <line x1="40" y1="32" x2="46" y2="32" stroke-width="1.2"/>
+  <circle cx="40" cy="32" r="1.5" fill="#4a3f35"/>
+  <rect x="32" y="46" width="16" height="8" rx="4" class="glass"/>
+  <rect x="32" y="56" width="16" height="6" rx="3" class="glass"/>
+  <rect x="26" y="66" width="28" height="4" rx="1" class="w"/>
+  <line x1="28" y1="44" x2="52" y2="44" stroke-width="1.5"/>
+</symbol>
+
+<symbol id="i-londoneye" viewBox="0 0 80 80" class="ico">
+  <circle cx="40" cy="36" r="26" fill="none" stroke="#4a3f35" stroke-width="1.5"/>
+  <circle cx="40" cy="36" r="3" fill="#4a3f35"/>
+  <line x1="40" y1="36" x2="40" y2="10"/><line x1="40" y1="36" x2="40" y2="62"/>
+  <line x1="40" y1="36" x2="14" y2="36"/><line x1="40" y1="36" x2="66" y2="36"/>
+  <line x1="40" y1="36" x2="21.6" y2="17.6"/><line x1="40" y1="36" x2="58.4" y2="54.4"/>
+  <line x1="40" y1="36" x2="58.4" y2="17.6"/><line x1="40" y1="36" x2="21.6" y2="54.4"/>
+  <circle cx="40" cy="10" r="3.5" class="glass"/><circle cx="40" cy="62" r="3.5" class="glass"/>
+  <circle cx="14" cy="36" r="3.5" class="glass"/><circle cx="66" cy="36" r="3.5" class="glass"/>
+  <circle cx="21.6" cy="17.6" r="3.5" class="glass"/><circle cx="58.4" cy="54.4" r="3.5" class="glass"/>
+  <circle cx="58.4" cy="17.6" r="3.5" class="glass"/><circle cx="21.6" cy="54.4" r="3.5" class="glass"/>
+  <line x1="40" y1="62" x2="34" y2="74" stroke-width="2"/><line x1="40" y1="62" x2="46" y2="74" stroke-width="2"/>
+  <line x1="30" y1="74" x2="50" y2="74" stroke-width="1.5"/>
+</symbol>
+
+<symbol id="i-kingscross" viewBox="0 0 80 80" class="ico">
+  <path d="M14,60 L14,24 Q40,8 66,24 L66,60" class="w" fill="#faf5eb"/>
+  <path d="M14,24 Q40,8 66,24" fill="none" stroke-width="2"/>
+  <rect x="34" y="40" width="12" height="20" rx="1" class="accent"/>
+  <circle cx="46" cy="50" r="1.5"/>
+  <rect x="20" y="30" width="10" height="12" rx="5" class="glass"/>
+  <rect x="50" y="30" width="10" height="12" rx="5" class="glass"/>
+  <line x1="14" y1="60" x2="66" y2="60" stroke-width="2"/>
+  <text x="40" y="36" text-anchor="middle" font-size="7" font-weight="bold" fill="#b02a2a" stroke="none" font-family="serif">9¾</text>
+</symbol>
+
+<!-- LONDON - Day 9 -->
+<symbol id="i-stpauls" viewBox="0 0 80 80" class="ico">
+  <rect x="12" y="42" width="56" height="24" rx="1" class="w"/>
+  <line x1="22" y1="42" x2="22" y2="66" stroke-width="2"/>
+  <line x1="34" y1="42" x2="34" y2="66" stroke-width="2"/>
+  <line x1="46" y1="42" x2="46" y2="66" stroke-width="2"/>
+  <line x1="58" y1="42" x2="58" y2="66" stroke-width="2"/>
+  <path d="M22,42 Q40,16 58,42" class="roof"/>
+  <ellipse cx="40" cy="28" rx="8" ry="5" class="w"/>
+  <line x1="40" y1="18" x2="40" y2="23"/>
+  <line x1="38" y1="20" x2="42" y2="20" stroke-width="1.2"/>
+  <line x1="40" y1="16" x2="40" y2="18" stroke-width="1.5"/>
+  <rect x="4" y="36" width="12" height="30" rx="1" class="w"/>
+  <rect x="64" y="36" width="12" height="30" rx="1" class="w"/>
+  <polygon points="4,36 10,28 16,36"/><polygon points="64,36 70,28 76,36"/>
+  <rect x="36" y="52" width="8" height="14" rx="1" class="accent"/>
+</symbol>
+
+<symbol id="i-millenniumbridge" viewBox="0 0 80 80" class="ico">
+  <line x1="4" y1="44" x2="76" y2="44" stroke-width="2"/>
+  <line x1="4" y1="40" x2="4" y2="48" stroke-width="2"/>
+  <line x1="76" y1="40" x2="76" y2="48" stroke-width="2"/>
+  <path d="M4,38 Q20,30 40,34 Q60,38 76,30" fill="none" stroke-width="1.2"/>
+  <path d="M4,50 Q20,58 40,54 Q60,50 76,58" fill="none" stroke-width="1.2"/>
+  <line x1="16" y1="36" x2="16" y2="44" stroke-width="0.8"/>
+  <line x1="28" y1="34" x2="28" y2="44" stroke-width="0.8"/>
+  <line x1="40" y1="34" x2="40" y2="44" stroke-width="0.8"/>
+  <line x1="52" y1="36" x2="52" y2="44" stroke-width="0.8"/>
+  <line x1="64" y1="32" x2="64" y2="44" stroke-width="0.8"/>
+  <rect x="2" y="56" width="76" height="8" rx="1" class="water"/>
+</symbol>
+
+<symbol id="i-britishmuseum" viewBox="0 0 80 80" class="ico">
+  <rect x="8" y="36" width="64" height="30" rx="1" class="w"/>
+  <polygon points="4,36 40,14 76,36" class="roof"/>
+  <line x1="18" y1="36" x2="18" y2="66" stroke-width="2.5"/>
+  <line x1="30" y1="36" x2="30" y2="66" stroke-width="2.5"/>
+  <line x1="40" y1="36" x2="40" y2="66" stroke-width="2.5"/>
+  <line x1="50" y1="36" x2="50" y2="66" stroke-width="2.5"/>
+  <line x1="62" y1="36" x2="62" y2="66" stroke-width="2.5"/>
+  <rect x="36" y="54" width="8" height="12" rx="1" class="accent"/>
+  <line x1="4" y1="36" x2="76" y2="36" stroke-width="2"/>
+  <line x1="8" y1="66" x2="72" y2="66" stroke-width="2"/>
+</symbol>
+
+<symbol id="i-regentspark" viewBox="0 0 80 80" class="ico">
+  <rect x="4" y="56" width="72" height="10" rx="2" class="green"/>
+  <circle cx="20" cy="36" r="16" class="green"/>
+  <circle cx="56" cy="40" r="12" class="green"/>
+  <line x1="20" y1="52" x2="20" y2="56" stroke="#7aaa6a" stroke-width="3"/>
+  <line x1="56" y1="52" x2="56" y2="56" stroke="#7aaa6a" stroke-width="3"/>
+  <ellipse cx="40" cy="62" rx="6" ry="3" class="water"/>
+  <ellipse cx="42" cy="48" rx="4" ry="7" fill="#1a1a2e" stroke="#4a3f35" stroke-width="1"/>
+  <ellipse cx="42" cy="42" rx="3" ry="3" fill="#fff" stroke="#4a3f35" stroke-width="1"/>
+  <circle cx="43" cy="41" r="0.8" fill="#1a1a2e"/>
+  <polygon points="42,40 46,42 42,43" fill="#e8c864" stroke="#b8962e" stroke-width="0.5"/>
+</symbol>
+
+<symbol id="i-boroughmarket" viewBox="0 0 80 80" class="ico">
+  <path d="M4,26 L76,26 L76,32 L4,32 Z" class="w" fill="#e8d5b8"/>
+  <rect x="8" y="32" width="64" height="34" rx="1" class="w"/>
+  <rect x="14" y="38" width="14" height="18" rx="1" fill="#fdf2e4" stroke="#4a3f35"/>
+  <rect x="33" y="38" width="14" height="18" rx="1" fill="#fce8e8" stroke="#4a3f35"/>
+  <rect x="52" y="38" width="14" height="18" rx="1" fill="#e8f5e8" stroke="#4a3f35"/>
+  <circle cx="21" cy="44" r="4" class="accent"/>
+  <circle cx="40" cy="44" r="4" class="red"/>
+  <circle cx="59" cy="44" r="4" class="green"/>
+  <line x1="8" y1="66" x2="72" y2="66" stroke-width="1.5"/>
+  <path d="M10,22 L40,12 L70,22" fill="none" stroke-width="1.5"/>
+</symbol>
+
+</svg>
+
+<!-- ========== PAGE CONTENT ========== -->
+<div class="hero">
+  <span class="flag">&#x1F1EC;&#x1F1E7;</span>
+  <h1>英國11日親子之旅</h1>
+  <div class="subtitle">United Kingdom Family Trip</div>
+  <div class="dates">2026.02.17 - 02.27</div>
+  <div class="members">Peter &middot; Jean &middot; Michael &middot; Angel &middot; Kevin &middot; Maddy &middot; Maky</div>
+</div>
+
+<div class="nav" id="mainNav">
+  <button class="nav-btn active" type="button" data-sec="overview">總覽</button>
+  <button class="nav-btn" type="button" data-sec="bath">巴斯</button>
+  <button class="nav-btn" type="button" data-sec="oxford">牛津</button>
+  <button class="nav-btn" type="button" data-sec="london">倫敦</button>
+  <button class="nav-btn" type="button" data-sec="food">美食</button>
+</div>
+
+<!-- ==================== 總覽 ==================== -->
+<div class="section active" id="sec-overview">
+  <div class="overview-card">
+    <div class="day-summary"><div class="day-num"><span>1</span><small>2/17</small></div><div class="day-info"><h4>啟程與抵達</h4><p>桃園 TPE → 曼谷 BKK → 倫敦 LHR（泰航 TG635、TG910）</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>2</span><small>2/18</small></div><div class="day-info"><h4>抵達巴斯</h4><p>Heathrow Express → Paddington → Bath Spa｜皇家新月樓、普爾特尼橋</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>3</span><small>2/19</small></div><div class="day-info"><h4>巴斯 → 牛津</h4><p>羅馬浴場、修道院｜火車前往牛津</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>4</span><small>2/20</small></div><div class="day-info"><h4>牛津深度遊</h4><p>基督學院、愛麗絲商店、嘆息橋、大學公園</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>5</span><small>2/21</small></div><div class="day-info"><h4>牛津探索</h4><p>室內市場、牛津城堡、自然歷史博物館、The Grand Cafe 下午茶</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>6</span><small>2/22</small></div><div class="day-info"><h4>牛津 → Bicester → 倫敦</h4><p>Bicester Village Outlets 購物｜火車前往倫敦</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>7</span><small>2/23</small></div><div class="day-info"><h4>倫敦：格林威治</h4><p>天文臺、卡提沙克號、倫敦塔、塔橋｜London Pass</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>8</span><small>2/24</small></div><div class="day-info"><h4>倫敦：西敏區</h4><p>西敏寺、白金漢宮衛兵交接、大笨鐘、倫敦眼、9¾月台</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>9</span><small>2/25</small></div><div class="day-info"><h4>倫敦：博物館與公園</h4><p>聖保羅大教堂、大英博物館、攝政公園、倫敦動物園</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>10</span><small>2/26</small></div><div class="day-info"><h4>返程</h4><p>Heathrow Express → LHR｜泰航 TG911 → 曼谷</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>11</span><small>2/27</small></div><div class="day-info"><h4>回到台灣</h4><p>曼谷 BKK → 桃園 TPE（泰航 TG632）12:45 抵達</p></div></div>
+  </div>
+  <div class="info-card"><h3>&#x2708;&#xFE0F; 航班資訊</h3>
+    <div class="info-row"><span class="info-label">去程</span><span class="info-value">TG635 18:50→21:45<br>TG910 00:05→06:40</span></div>
+    <div class="info-row"><span class="info-label">回程</span><span class="info-value">TG911 11:50→06:15<br>TG632 08:15→12:45</span></div>
+    <div class="info-row"><span class="info-label">航空公司</span><span class="info-value">泰國航空</span></div>
+  </div>
+  <div class="info-card"><h3>&#x1F3E8; 住宿</h3>
+    <div class="info-row"><span class="info-label">Bath (D2)</span><span class="info-value">Apex City of Bath Hotel</span></div>
+    <div class="info-row"><span class="info-label">Oxford (D3-5)</span><span class="info-value">63 St Clement's St</span></div>
+    <div class="info-row"><span class="info-label">London (D6-9)</span><span class="info-value">Central Park Hotel</span></div>
+  </div>
+  <div class="info-card"><h3>&#x1F4B0; London Pass</h3>
+    <div class="info-row"><span class="info-label">天數</span><span class="info-value">2 日券</span></div>
+    <div class="info-row"><span class="info-label">價格</span><span class="info-value">成人 &pound;114</span></div>
+    <div class="info-row"><span class="info-label">包含景點</span><span class="info-value">天文臺、倫敦塔、塔橋、西敏寺、聖保羅大教堂</span></div>
+  </div>
+</div>
+
+<!-- ==================== 巴斯 ==================== -->
+<div class="section city-bath" id="sec-bath">
+  <div class="city-header"><div class="city-en">BATH</div><h2>巴斯 BATH</h2>
+    <p class="city-desc">英國西南部的歷史古城，保存完善的羅馬浴場聞名。城市充滿蜂蜜色的喬治亞時期建築，風格典雅。整座城市被列為世界文化遺產，也是文學與藝術的重要據點。</p></div>
+
+  <span class="day-label">Day 2 &middot; 2/18（三）</span>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-crescent"/></svg></div>
+    <div class="attr-title"><h3>皇家新月樓</h3><div class="attr-en">Royal Crescent</div><div class="attr-brief">30棟連體弧形喬治亞式公寓</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1767-1774年，由建築師約翰·伍德二世設計。這排壯觀的新月形建築由30棟聯排房屋組成，以愛奧尼亞式圓柱裝飾，是英國喬治亞式建築的最佳典範。其中1號已改建為博物館，可一窺18世紀上流社會的生活樣貌。面前的大草坪是當年貴族社交散步的場所。</p><span class="attr-tag tag-free">免費外觀</span><span class="attr-tag tag-tip">博物館 &pound;12</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-pulteney"/></svg></div>
+    <div class="attr-title"><h3>普爾特尼橋</h3><div class="attr-en">Pulteney Bridge</div><div class="attr-brief">橋上有商店的稀有三拱橋</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1774年，由羅伯特·亞當設計，是世界上僅存少數兩側建有商店的橋樑之一，與佛羅倫斯的老橋（Ponte Vecchio）齊名。橋跨越雅芳河（River Avon），下方的堰壩形成美麗的瀑布景觀，是巴斯最上鏡的拍照地點。</p><span class="attr-tag tag-free">免費</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-guildhall"/></svg></div>
+    <div class="attr-title"><h3>市政廳市集</h3><div class="attr-en">Guildhall Market</div><div class="attr-brief">當地人日常採買的傳統市場</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>位於市中心的室內市場，自1775年起營業至今。市場內有各式攤位販售在地農產品、手工藝品、古董以及熟食。這裡是感受巴斯在地生活的最佳去處，也能找到許多平價美食。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-tip">17:00 關門</span></div></div></div>
+
+  <span class="day-label">Day 3 &middot; 2/19（四）</span>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-romanbaths"/></svg></div>
+    <div class="attr-title"><h3>羅馬浴場</h3><div class="attr-en">Roman Baths</div><div class="attr-brief">保存完整的古羅馬浴場遺跡</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於公元60年左右的羅馬時代，圍繞天然溫泉修建。浴場水溫恆定約46°C，每天湧出超過100萬公升溫泉水。羅馬人將此地獻給智慧女神蘇利絲·密涅瓦（Sulis Minerva）。博物館內展出大量羅馬時期文物，包括鍍金銅製女神頭像。</p><span class="attr-tag tag-price">成人 &pound;28</span><span class="attr-tag tag-tip">建議預留 2 小時</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-bathabbey"/></svg></div>
+    <div class="attr-title"><h3>修道院</h3><div class="attr-en">Bath Abbey</div><div class="attr-brief">哥德式教堂，巴斯精神地標</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>歷史可追溯到7世紀，現存建築建於1499年，是英國哥德式垂直風格的傑作。教堂最引人注目的是西面正門的「雅各天梯」石雕——天使攀爬梯子升天的場景。內部擁有52扇大窗，採光極佳，被稱為「西方之燈」。</p><span class="attr-tag tag-price">成人 &pound;8</span></div></div></div>
+</div>
+
+<!-- ==================== 牛津 ==================== -->
+<div class="section city-oxford" id="sec-oxford">
+  <div class="city-header"><div class="city-en">OXFORD</div><h2>牛津 OXFORD</h2>
+    <p class="city-desc">英國著名的大學城，融合中世紀街景與學術氛圍。牛津大學與眾多學院建築，孕育無數學者與思想家。書店、圖書館與博物館林立，是知識、文化與傳統交會的重要城市。</p></div>
+
+  <span class="day-label">Day 4 &middot; 2/20（五）</span>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-christchurch"/></svg></div>
+    <div class="attr-title"><h3>基督學院</h3><div class="attr-en">Christ Church</div><div class="attr-brief">哈利波特取景地，牛津最壯觀的學院</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>創建於1546年，由亨利八世建立。大廳（Great Hall）是《哈利波特》霍格華茲餐廳的靈感來源。湯姆塔（Tom Tower）由克里斯多佛·雷恩爵士設計，每晚21:05會敲響101下。著名校友包括13位英國首相及《愛麗絲夢遊仙境》作者路易斯·卡羅。</p><span class="attr-tag tag-price">成人 &pound;20</span><span class="attr-tag tag-kid">哈利波特迷必訪</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-radcliffe"/></svg></div>
+    <div class="attr-title"><h3>拉德克利夫圖書館</h3><div class="attr-en">Radcliffe Camera</div><div class="attr-brief">圓形巴洛克建築，牛津最上鏡地標</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1737-1749年，由建築師詹姆斯·吉布斯設計，是英國最早的圓形圖書館。「Camera」源自拉丁文，意為「房間」。現為博德利圖書館的閱覽室，壯觀的圓頂外觀已是牛津明信片上最常見的畫面。</p><span class="attr-tag tag-free">免費外觀</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-sighs"/></svg></div>
+    <div class="attr-title"><h3>嘆息橋</h3><div class="attr-en">Bridge of Sighs</div><div class="attr-brief">連接赫特福德學院的優美廊橋</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1914年，正式名稱為赫特福德橋，因外觀與威尼斯的嘆息橋相似而得名。這座橋橫跨新學院巷（New College Lane），是牛津最常被拍攝的地標之一。</p><span class="attr-tag tag-free">免費</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-blackwell"/></svg></div>
+    <div class="attr-title"><h3>Blackwell's 書店</h3><div class="attr-en">Blackwell's Bookshop</div><div class="attr-brief">哈利波特出版書店，學術書籍寶庫</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>創立於1879年，地下室的諾靈頓廳曾獲金氏世界紀錄認證為「世界上最大的書籍展示單一房間」，藏書超過25萬冊。書店對面就是博德利圖書館，整條街洋溢著濃厚的學術氣息。</p><span class="attr-tag tag-free">免費參觀</span><span class="attr-tag tag-kid">適合選購童書</span></div></div></div>
+
+  <span class="day-label">Day 5 &middot; 2/21（六）</span>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-coveredmarket"/></svg></div>
+    <div class="attr-title"><h3>室內市場</h3><div class="attr-en">The Covered Market</div><div class="attr-brief">Pieminister 英式鹹派、Ben's Cookies</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>自1774年開業至今，超過50家店鋪。必吃：Pieminister 的英式鹹派和 Ben's Cookies（現烤軟心餅乾，牛津學生的最愛）。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-food">必吃 Ben's Cookies</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-oxcastle"/></svg></div>
+    <div class="attr-title"><h3>牛津城堡與監獄</h3><div class="attr-en">Oxford Castle &amp; Prison</div><div class="attr-brief">千年城堡遺址，曾為維多利亞監獄</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>始建於1071年，聖喬治塔是牛津現存最古老的建築。城堡在18世紀被改建為監獄，一直使用到1996年。導覽會帶你走進真實的牢房、地下墓穴和中世紀塔樓。</p><span class="attr-tag tag-price">成人 &pound;20</span><span class="attr-tag tag-tip">需參加導覽團</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-grandcafe"/></svg></div>
+    <div class="attr-title"><h3>The Grand Cafe</h3><div class="attr-en">The Grand Cafe</div><div class="attr-brief">英國最古老咖啡廳，經典英式下午茶</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>原址是英國第一家咖啡廳（1650年開業）。現以精緻的英式下午茶聞名，三層架上的司康餅、三明治和蛋糕，搭配一壺英式紅茶，是體驗英國茶文化的絕佳選擇。</p><span class="attr-tag tag-food">推薦英式下午茶</span><span class="attr-tag tag-tip">建議預約</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-nathistory"/></svg></div>
+    <div class="attr-title"><h3>自然歷史博物館</h3><div class="attr-en">Oxford University Museum of Natural History</div><div class="attr-brief">恐龍化石與渡渡鳥標本</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1860年，收藏超過700萬件標本。最著名的是大廳中央的恐龍骨架和世界上最完整的渡渡鳥（Dodo）標本遺骸。對小朋友來說，互動式的恐龍展區是最大亮點。</p><span class="attr-tag tag-free">免費</span><span class="attr-tag tag-kid">小朋友最愛恐龍</span></div></div></div>
+</div>
+
+<!-- ==================== 倫敦 ==================== -->
+<div class="section city-london" id="sec-london">
+  <div class="city-header"><div class="city-en">LONDON</div><h2>倫敦 LONDON</h2>
+    <p class="city-desc">英國首都，融合千年皇室歷史與現代都會魅力。從西敏區的國會殿堂到泰晤士河畔的古堡塔橋，世界級博物館與熱鬧市集交織，是親子深度探索的絕佳城市。</p></div>
+
+  <div class="london-day-divider"><span>Day 7 &middot; 2/23（一）格林威治 &amp; 倫敦塔</span></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon icon-greenwich"><svg><use href="#i-observatory"/></svg></div>
+    <div class="attr-title"><h3>格林威治天文臺</h3><div class="attr-en">Royal Observatory, Greenwich</div><div class="attr-brief">本初子午線所在地，東西半球的起點</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1675年，由查理二世下令建造。1884年國際子午線會議將此處定為本初子午線（經度0°），成為全球時間標準基準點。遊客可以橫跨東西半球拍照。從山丘上還能俯瞰泰晤士河與倫敦金融區天際線。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;24</span><span class="attr-tag tag-kid">踏在子午線上拍照</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon icon-greenwich"><svg><use href="#i-queenshouse"/></svg></div>
+    <div class="attr-title"><h3>皇后之屋</h3><div class="attr-en">Queen's House</div><div class="attr-brief">英國第一座古典主義建築</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1616-1635年，是英國第一座完全採用古典主義風格的建築。館內收藏大量皇家海事畫作，包括知名的「阿瑪達肖像」。旋轉樓梯（Tulip Stairs）是英國最早的幾何自支撐螺旋階梯。</p><span class="attr-tag tag-free">預約免費</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon icon-greenwich"><svg><use href="#i-cuttysark"/></svg></div>
+    <div class="attr-title"><h3>卡提沙克號</h3><div class="attr-en">Cutty Sark</div><div class="attr-brief">19世紀傳奇快速帆船</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1869年的蘇格蘭，是現存最後一艘完整的茶葉快剪船。曾以最快速度從中國運茶葉到英國。現在船身被抬升3公尺展示，可以從下方走過仰望船底，這是以前水手永遠看不到的視角。</p><span class="attr-tag tag-price">&pound;22</span><span class="attr-tag tag-kid">可走進船艙探險</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon icon-greenwich"><svg><use href="#i-greenwichmarket"/></svg></div>
+    <div class="attr-title"><h3>格林威治市集</h3><div class="attr-en">Greenwich Market</div><div class="attr-brief">古董、手工藝品與世界美食</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>始於1737年，是倫敦僅存擁有皇家特許狀的市場之一。市集位於有頂棚的空間內，即使下雨也不影響。比起 Borough Market，格林威治市集更有在地社區的悠閒感。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-tip">17:30 打烊</span><span class="attr-tag tag-food">推薦各國街頭美食</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-toweroflondon"/></svg></div>
+    <div class="attr-title"><h3>倫敦塔</h3><div class="attr-en">Tower of London</div><div class="attr-brief">千年皇家城堡，收藏英國皇冠珠寶</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1066年，近千年來曾作為皇宮、監獄、刑場、軍械庫、天文台和動物園。最受歡迎的展覽是「皇冠珠寶」——展出530克拉的「非洲之星」鑽石。穿著都鐸式制服的「Beefeaters」衛兵會提供免費導覽。傳說中塔內必須養至少6隻渡鴉，否則王國將會覆滅。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;35.8</span><span class="attr-tag tag-tip">建議預留 2-3 小時</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-towerbridge"/></svg></div>
+    <div class="attr-title"><h3>塔橋</h3><div class="attr-en">Tower Bridge</div><div class="attr-brief">倫敦經典地標，高空玻璃走道</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>建於1886-1894年，兩座65公尺高的哥德式塔樓是倫敦最具辨識度的天際線。橋面至今每年仍開合約800次。高空走道的玻璃地板可以俯瞰泰晤士河。許多人會把它跟「倫敦橋」搞混——倫敦橋其實是旁邊一座非常樸素的橋。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;12</span></div></div></div>
+
+  <div class="london-day-divider"><span>Day 8 &middot; 2/24（二）西敏區與經典地標</span></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-westminster"/></svg></div>
+    <div class="attr-title"><h3>西敏寺</h3><div class="attr-en">Westminster Abbey</div><div class="attr-brief">英國君主加冕之地，千年哥德式教堂</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>始建於960年，自1066年征服者威廉以來幾乎所有英國君主都在此加冕。教堂內安葬了牛頓、達爾文、狄更斯等偉人。2011年威廉王子與凱特的皇家婚禮也在此舉行。飛扶壁和尖肋拱頂是英國哥德式的最高成就。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;31</span><span class="attr-tag tag-tip">09:30 開門，建議早到</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-parliament"/></svg></div>
+    <div class="attr-title"><h3>國會大廈</h3><div class="attr-en">Houses of Parliament</div><div class="attr-brief">英國民主政治的中心</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>正式名稱為「西敏宮」，1834年大火後以新哥德式風格重建。內部有超過1,100個房間。1605年蓋伊·福克斯曾密謀炸毀國會，至今每年11月5日英國仍以篝火之夜紀念。</p><span class="attr-tag tag-price">&pound;27</span><span class="attr-tag tag-tip">外觀拍照即可</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-buckingham"/></svg></div>
+    <div class="attr-title"><h3>白金漢宮</h3><div class="attr-en">Buckingham Palace</div><div class="attr-brief">英國皇室官邸，衛兵交接儀式</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>自1837年維多利亞女王即位以來的英國君主官邸，共有775個房間。衛兵交接儀式約在11:00開始，穿著紅色制服、戴熊皮帽的衛兵伴隨軍樂行進，是倫敦最具代表性的儀式之一。</p><span class="attr-tag tag-free">外觀免費</span><span class="attr-tag tag-tip">11:00前抵達搶位置</span><span class="attr-tag tag-kid">小朋友愛看衛兵交接</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-bigben"/></svg></div>
+    <div class="attr-title"><h3>大笨鐘</h3><div class="attr-en">Big Ben</div><div class="attr-brief">倫敦最具代表性的鐘塔地標</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>「Big Ben」其實是指塔內最大的那口鐘，鐘塔正式名稱為「伊莉莎白塔」。塔高96公尺，鐘面直徑7公尺。鐘聲可傳至14公里外，BBC曾長期以它作為整點報時信號。大鐘重13.7噸，上面有一道1859年就出現的裂縫。</p><span class="attr-tag tag-free">外觀免費</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-londoneye"/></svg></div>
+    <div class="attr-title"><h3>倫敦眼</h3><div class="attr-en">The London Eye</div><div class="attr-brief">泰晤士河畔巨型摩天輪，俯瞰全景</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>高135公尺，32個全封閉玻璃座艙（代表倫敦32個行政區，編號跳過13號）。轉一圈約30分鐘，天氣晴朗時視野可達40公里。整座輪先在泰晤士河面上平躺組裝再立起，是一項工程壯舉。</p><span class="attr-tag tag-price">&pound;44</span><span class="attr-tag tag-tip">建議線上預購</span><span class="attr-tag tag-kid">小朋友超愛</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-kingscross"/></svg></div>
+    <div class="attr-title"><h3>國王十字車站 9&frac34; 月台</h3><div class="attr-en">King's Cross Station</div><div class="attr-brief">哈利波特魔法世界的入口</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>車站特別設置了一面嵌著半截行李推車的牆壁供拍照，旁邊還有官方哈利波特商店。工作人員會協助你選學院圍巾、拋起披風拍出最佳的「穿越」瞬間。排隊拍照通常需要15-30分鐘。</p><span class="attr-tag tag-free">免費拍照</span><span class="attr-tag tag-kid">哈利波特迷必訪</span></div></div></div>
+
+  <div class="london-day-divider"><span>Day 9 &middot; 2/25（三）博物館與攝政公園</span></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-stpauls"/></svg></div>
+    <div class="attr-title"><h3>聖保羅大教堂</h3><div class="attr-en">St. Paul's Cathedral</div><div class="attr-brief">巴洛克建築傑作，倫敦天際線地標</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>由克里斯多佛·雷恩爵士設計，穹頂高111公尺。穹頂內部的「耳語走廊」有神奇的聲學效果——一側輕聲說話，對面34公尺外的人能清楚聽到。二戰時整個倫敦東區被炸為廢墟，聖保羅卻奇蹟般屹立不倒。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;25</span><span class="attr-tag tag-tip">登頂 528 階</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-millenniumbridge"/></svg></div>
+    <div class="attr-title"><h3>千禧橋</h3><div class="attr-en">Millennium Bridge</div><div class="attr-brief">聖保羅大教堂前的現代步行鋼橋</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>2000年開放，開放兩天後因共振晃動而緊急關閉，被戲稱為「搖擺橋」。《哈利波特：混血王子的背叛》開場中，食死人攻擊倫敦時摧毀了這座橋。一端是聖保羅大教堂，另一端是泰特現代藝術館。</p><span class="attr-tag tag-free">免費</span><span class="attr-tag tag-kid">哈利波特電影場景</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-britishmuseum"/></svg></div>
+    <div class="attr-title"><h3>大英博物館</h3><div class="attr-en">British Museum</div><div class="attr-brief">世界頂級博物館，800萬件珍藏</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>成立於1753年，藏品超過800萬件。必看：羅塞塔石碑、埃及木乃伊展廳、帕德嫩神廟大理石雕、復活節島摩艾石像。中央大中庭是歐洲最大的室內廣場。一天只能看完約1%的藏品。</p><span class="attr-tag tag-free">預約免費</span><span class="attr-tag tag-tip">建議專注 2-3 區</span><span class="attr-tag tag-kid">木乃伊展廳最受歡迎</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-regentspark"/></svg></div>
+    <div class="attr-title"><h3>攝政公園與倫敦動物園</h3><div class="attr-en">The Regent's Park &amp; London Zoo</div><div class="attr-brief">皇家公園綠地，企鵝海灘親子最愛</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>佔地166公頃的皇家公園。倫敦動物園成立於1828年，是世界上最古老的科學動物園。「企鵝海灘」是英國最大的企鵝展區，小朋友可以近距離觀察企鵝游泳和日光浴。</p><span class="attr-tag tag-price">動物園 &pound;35</span><span class="attr-tag tag-free">公園免費</span><span class="attr-tag tag-kid">企鵝海灘必看</span></div></div></div>
+
+  <div class="attr-card"><div class="attr-header">
+    <div class="attr-icon"><svg><use href="#i-boroughmarket"/></svg></div>
+    <div class="attr-title"><h3>波羅市場</h3><div class="attr-en">Borough Market</div><div class="attr-brief">倫敦最古老的食品市場</div></div>
+    <div class="attr-arrow">&#x276F;</div></div>
+    <div class="attr-detail"><div class="attr-detail-inner"><p>歷史可追溯到1014年，被譽為「倫敦的廚房」。超過100家攤販，必嚐瑞士起司吐司（Raclette）、手工麵包、新鮮生蠔。市場在鐵道高架橋下，即使下雨也有遮蔽。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-tip">17:00 打烊</span><span class="attr-tag tag-food">倫敦必訪美食市場</span></div></div></div>
+</div>
+
+<!-- ==================== 美食 ==================== -->
+<div class="section" id="sec-food">
+  <div class="city-header"><h2 style="color:#d4760a">英國在地美食</h2>
+    <p class="city-desc">來英國不能錯過的道地美食，從傳統 Pub 料理到精緻下午茶，用味蕾感受英倫文化。</p></div>
+  <div class="food-card"><h3>必嚐經典</h3>
+    <div class="food-item"><span class="food-emoji">&#x1F35F;</span><span class="food-name">炸魚薯條<span class="food-name-en">Fish &amp; Chips</span></span></div>
+    <div class="food-item"><span class="food-emoji">&#x1F373;</span><span class="food-name">英式早餐<span class="food-name-en">English Breakfast</span></span></div>
+    <div class="food-item"><span class="food-emoji">&#x1F967;</span><span class="food-name">英式鹹派<span class="food-name-en">Pie</span></span></div>
+    <div class="food-item"><span class="food-emoji">&#x1F35E;</span><span class="food-name">約克布丁<span class="food-name-en">Yorkshire Pudding</span></span></div>
+    <div class="food-item"><span class="food-emoji">&#x1F969;</span><span class="food-name">威靈頓牛排<span class="food-name-en">Beef Wellington</span></span></div>
+    <div class="food-item"><span class="food-emoji">&#x1F370;</span><span class="food-name">維多利亞海綿蛋糕<span class="food-name-en">Victoria Sponge Cake</span></span></div>
+    <div class="food-item"><span class="food-emoji">&#x2615;</span><span class="food-name">英式下午茶<span class="food-name-en">Afternoon Tea</span></span></div>
+  </div>
+  <div class="info-card"><h3>&#x1F37D;&#xFE0F; 行程推薦餐廳</h3>
+    <div class="info-row"><span class="info-label">牛津午餐</span><span class="info-value">Friends Cafe（巴西菜 &pound;10/人）</span></div>
+    <div class="info-row"><span class="info-label">牛津晚餐</span><span class="info-value">Thaikhun（泰式 &pound;30/人）</span></div>
+    <div class="info-row"><span class="info-label">牛津午餐</span><span class="info-value">Turf Tavern（炸魚薯條 &pound;15/人）</span></div>
+    <div class="info-row"><span class="info-label">牛津下午茶</span><span class="info-value">The Grand Cafe</span></div>
+    <div class="info-row"><span class="info-label">Bicester</span><span class="info-value">Farmshop Caf&eacute;（&pound;20-25/人）</span></div>
+    <div class="info-row"><span class="info-label">倫敦午餐</span><span class="info-value">Borough Market 波羅市場</span></div>
+    <div class="info-row"><span class="info-label">倫敦晚餐</span><span class="info-value">Leon（國王十字車站）</span></div>
+    <div class="info-row"><span class="info-label">倫敦晚餐</span><span class="info-value">Nando's（格林威治）</span></div>
+  </div>
+  <div class="info-card"><h3>&#x1F6D2; 牛津特色美食</h3>
+    <div class="info-row"><span class="info-label">室內市場</span><span class="info-value">Pieminister 鹹派 + Ben's Cookies</span></div>
+    <div class="info-row"><span class="info-label">露天市集</span><span class="info-value">Gloucester Green Market</span></div>
+    <div class="info-row"><span class="info-label">最古老酒吧</span><span class="info-value">The Bear Inn</span></div>
+    <div class="info-row"><span class="info-label">手工冰淇淋</span><span class="info-value">George &amp; Davis</span></div>
+  </div>
+</div>
+
+<div class="footer">英國11日親子之旅 &middot; 2026.02.17-02.27<br>Made with &#x2764;&#xFE0F; for the family</div>
+
+<script>
+(function(){
+  /* --- Nav buttons (iOS-safe) --- */
+  var navBtns = document.querySelectorAll('.nav-btn');
+  var sections = document.querySelectorAll('.section');
+  function showSection(secName, btn){
+    for(var i=0;i<sections.length;i++) sections[i].classList.remove('active');
+    for(var i=0;i<navBtns.length;i++) navBtns[i].classList.remove('active');
+    var target = document.getElementById('sec-'+secName);
+    if(target) target.classList.add('active');
+    if(btn) btn.classList.add('active');
+    var nav = document.getElementById('mainNav');
+    if(nav) window.scrollTo(0, nav.offsetTop);
+  }
+  for(var i=0;i<navBtns.length;i++){
+    (function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        showSection(btn.getAttribute('data-sec'), btn);
+      }, false);
+    })(navBtns[i]);
+  }
+
+  /* --- Attraction card toggle (iOS-safe) --- */
+  var headers = document.querySelectorAll('.attr-header');
+  for(var i=0;i<headers.length;i++){
+    (function(hdr){
+      hdr.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var card = hdr.parentElement;
+        var wasExpanded = card.classList.contains('expanded');
+        /* collapse siblings */
+        var sec = card.closest('.section');
+        if(sec){
+          var expanded = sec.querySelectorAll('.attr-card.expanded');
+          for(var j=0;j<expanded.length;j++){
+            if(expanded[j]!==card) expanded[j].classList.remove('expanded');
+          }
+        }
+        if(wasExpanded) card.classList.remove('expanded');
+        else card.classList.add('expanded');
+      }, false);
+    })(headers[i]);
+  }
+})();
+</script>
+</body>
+</html>
