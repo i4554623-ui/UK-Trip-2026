@@ -126,13 +126,20 @@ body{
 
 .footer{text-align:center;padding:32px 24px;color:#aaa;font-size:11px}
 
-/* SVG common style */
-.ico{fill:none;stroke:#4a3f35;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.ico .w{fill:#faf5eb}.ico .water{fill:#d4e8f0;stroke:#8bbad4;stroke-width:1}
-.ico .roof{fill:#e8d5b8}.ico .green{fill:#c8deb8;stroke:#7aaa6a;stroke-width:1}
-.ico .accent{fill:#d4a06a}.ico .glass{fill:#dbe8f4;stroke:#8bafc8;stroke-width:0.8}
-.ico .red{fill:#d47070;stroke:#a04040;stroke-width:1}
-.ico .gold{fill:#e8c864;stroke:#b8962e;stroke-width:0.8}
+/* SVG common style - watercolor */
+.ico{fill:none;stroke:#5a4a3a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  filter:url(#watercolor)}
+.ico .w{fill:#fdf8f0;opacity:0.9}.ico .water{fill:#a8d4e8;stroke:#6aaccf;stroke-width:1.5;opacity:0.85}
+.ico .roof{fill:#dbb88a;opacity:0.85}.ico .green{fill:#9cc88a;stroke:#5a9a4a;stroke-width:1.5;opacity:0.85}
+.ico .accent{fill:#d4956a;opacity:0.9}.ico .glass{fill:#b8d4ec;stroke:#6a9abf;stroke-width:1.2;opacity:0.8}
+.ico .red{fill:#d46060;stroke:#a03030;stroke-width:1.5;opacity:0.85}
+.ico .gold{fill:#e8c44a;stroke:#b8862e;stroke-width:1.2;opacity:0.85}
+
+.attr-icon{border:2px solid rgba(0,0,0,0.04)}
+.city-bath .attr-icon{background:linear-gradient(145deg,#fef6e8,#fdecd0)}
+.city-oxford .attr-icon{background:linear-gradient(145deg,#e8f2fe,#d8e8fc)}
+.city-london .attr-icon{background:linear-gradient(145deg,#fee8e8,#fcd8d8)}
+.icon-greenwich{background:linear-gradient(145deg,#e8f8e8,#d4ecd4) !important}
 
 /* Transport section */
 .transport-header{padding:32px 24px 20px;text-align:center}
@@ -156,16 +163,16 @@ body{
   box-shadow:0 2px 12px rgba(0,0,0,0.06)}
 .transport-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 
-.transport-step{display:flex;align-items:flex-start;padding:8px 0;position:relative}
+.transport-step{padding:10px 0;position:relative}
 .transport-step+.transport-step{border-top:1px dashed #e8e4dc}
-.step-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;margin-right:10px;font-size:13px}
-.step-info{flex:1;font-size:13px;line-height:1.6}
+.step-lines{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.step-info{font-size:13px;line-height:1.7}
 .step-station{font-weight:600}
 .step-walk{color:#888;font-size:12px}
+.step-boat{display:flex;align-items:center;gap:6px;margin-bottom:6px}
 
-.line-tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:10px;
-  font-weight:700;color:#fff;margin-right:4px;vertical-align:middle}
+.line-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;
+  font-weight:700;color:#fff}
 .line-central{background:#E32017}.line-circle{background:#FFD300;color:#333}
 .line-district{background:#00782A}.line-jubilee{background:#A0A5A9;color:#333}
 .line-northern{background:#000}.line-piccadilly{background:#003688}
@@ -191,6 +198,26 @@ body{
 </style>
 </head>
 <body>
+
+<!-- Watercolor SVG filter -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<defs>
+  <filter id="watercolor" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="turbulence" baseFrequency="0.04 0.06" numOctaves="4" seed="2" result="turb"/>
+    <feDisplacementMap in="SourceGraphic" in2="turb" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+    <feGaussianBlur in="displaced" stdDeviation="0.4" result="blurred"/>
+    <feComponentTransfer in="blurred" result="saturated">
+      <feFuncR type="linear" slope="1.1" intercept="0.02"/>
+      <feFuncG type="linear" slope="1.1" intercept="0.02"/>
+      <feFuncB type="linear" slope="1.1" intercept="0.02"/>
+      <feFuncA type="linear" slope="0.95"/>
+    </feComponentTransfer>
+    <feMerge>
+      <feMergeNode in="saturated"/>
+    </feMerge>
+  </filter>
+</defs>
+</svg>
 
 <!-- Hidden SVG symbol definitions -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -880,18 +907,17 @@ body{
   <div class="transport-card">
     <h4>&#x1F30D; 格林威治區域</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#e0f8f0"><span class="line-tag line-dlr">DLR</span></div>
+      <div class="step-lines"><span class="line-tag line-dlr">DLR</span></div>
       <div class="step-info"><span class="step-station">Cutty Sark 站</span><br>
-        <span class="step-walk">格林威治天文臺｜步行上山約 15 分鐘</span><br>
-        <span class="step-walk">皇后宅邸｜步行 5 分鐘</span><br>
-        <span class="step-walk">卡提沙克號｜步行 2 分鐘</span><br>
-        <span class="step-walk">格林威治市集｜步行 3 分鐘</span>
+        <span class="step-walk">&#x1F6B6; 格林威治天文臺｜步行上山約 15 分鐘</span><br>
+        <span class="step-walk">&#x1F6B6; 皇后宅邸｜步行 5 分鐘</span><br>
+        <span class="step-walk">&#x1F6B6; 卡提沙克號｜步行 2 分鐘</span><br>
+        <span class="step-walk">&#x1F6B6; 格林威治市集｜步行 3 分鐘</span>
       </div>
     </div>
     <div class="transport-step">
-      <div class="step-icon" style="background:#e0f2ff">&#x1F6A2;</div>
+      <div class="step-boat"><span class="clipper-tag">&#x1F6A2; Thames Clipper</span></div>
       <div class="step-info">
-        <span class="clipper-tag">&#x1F6A2; Thames Clipper</span><br>
         <span class="step-station">Greenwich Pier &rarr; Tower Pier</span><br>
         <span class="step-walk">約 30 分鐘｜沿途欣賞泰晤士河兩岸風景</span>
       </div>
@@ -901,16 +927,11 @@ body{
   <div class="transport-card">
     <h4>&#x1F3F0; 倫敦塔 &amp; 塔橋</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#fff3e0"><span class="line-tag line-circle">Circle</span><span class="line-tag line-district">District</span></div>
+      <div class="step-lines"><span class="line-tag line-circle">Circle</span> <span class="line-tag line-district">District</span></div>
       <div class="step-info"><span class="step-station">Tower Hill 站</span><br>
-        <span class="step-walk">倫敦塔｜步行 5 分鐘</span><br>
-        <span class="step-walk">塔橋｜步行 8 分鐘</span>
-      </div>
-    </div>
-    <div class="transport-step">
-      <div class="step-icon" style="background:#e0f2ff">&#x1F6A2;</div>
-      <div class="step-info">
-        <span class="step-walk">或從 Greenwich Pier 搭 Thames Clipper 到 Tower Pier，下船即達</span>
+        <span class="step-walk">&#x1F6B6; 倫敦塔｜步行 5 分鐘</span><br>
+        <span class="step-walk">&#x1F6B6; 塔橋｜步行 8 分鐘</span><br>
+        <span class="step-walk">&#x1F6A2; 或搭 Thames Clipper 到 Tower Pier 下船即達</span>
       </div>
     </div>
   </div>
@@ -920,10 +941,10 @@ body{
   <div class="transport-card">
     <h4>&#x1F3DB;&#xFE0F; 西敏寺 &amp; 國會大廈 &amp; 大笨鐘</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#f0f0f0"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-district">District</span><span class="line-tag line-circle">Circle</span></div>
+      <div class="step-lines"><span class="line-tag line-jubilee">Jubilee</span> <span class="line-tag line-district">District</span> <span class="line-tag line-circle">Circle</span></div>
       <div class="step-info"><span class="step-station">Westminster 站</span><br>
-        <span class="step-walk">西敏寺｜出站即達，步行 2 分鐘</span><br>
-        <span class="step-walk">國會大廈 &amp; 大笨鐘｜步行 3 分鐘</span>
+        <span class="step-walk">&#x1F6B6; 西敏寺｜出站即達，步行 2 分鐘</span><br>
+        <span class="step-walk">&#x1F6B6; 國會大廈 &amp; 大笨鐘｜步行 3 分鐘</span>
       </div>
     </div>
   </div>
@@ -931,18 +952,20 @@ body{
   <div class="transport-card">
     <h4>&#x1F451; 白金漢宮</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#e8f5e9"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-piccadilly">Piccadilly</span><span class="line-tag line-victoria">Victoria</span></div>
-      <div class="step-info"><span class="step-station">Green Park 站</span><span class="step-walk">｜步行 10 分鐘穿過公園</span><br>
-        <span class="step-walk">或 <span class="step-station">St James's Park 站</span>（<span class="line-tag line-district">District</span><span class="line-tag line-circle">Circle</span>）步行 8 分鐘</span>
-      </div>
+      <div class="step-lines"><span class="line-tag line-jubilee">Jubilee</span> <span class="line-tag line-piccadilly">Piccadilly</span> <span class="line-tag line-victoria">Victoria</span></div>
+      <div class="step-info"><span class="step-station">Green Park 站</span><span class="step-walk">｜&#x1F6B6; 步行 10 分鐘穿過公園</span></div>
+    </div>
+    <div class="transport-step">
+      <div class="step-lines"><span class="line-tag line-district">District</span> <span class="line-tag line-circle">Circle</span></div>
+      <div class="step-info"><span class="step-station">St James's Park 站</span><span class="step-walk">｜&#x1F6B6; 步行 8 分鐘</span></div>
     </div>
   </div>
 
   <div class="transport-card">
     <h4>&#x1F3A1; 倫敦眼</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#f3e5f5"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-northern">Northern</span><span class="line-tag line-bakerloo">Bakerloo</span></div>
-      <div class="step-info"><span class="step-station">Waterloo 站</span><span class="step-walk">｜步行 5 分鐘</span><br>
+      <div class="step-lines"><span class="line-tag line-jubilee">Jubilee</span> <span class="line-tag line-northern">Northern</span> <span class="line-tag line-bakerloo">Bakerloo</span></div>
+      <div class="step-info"><span class="step-station">Waterloo 站</span><span class="step-walk">｜&#x1F6B6; 步行 5 分鐘</span><br>
         <span class="step-walk">或從 Westminster 站步行過橋約 10 分鐘</span>
       </div>
     </div>
@@ -951,9 +974,9 @@ body{
   <div class="transport-card">
     <h4>&#x26A1; 國王十字 9&frac34; 月台</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#fce4ec"><span class="line-tag line-victoria">Victoria</span><span class="line-tag line-piccadilly">Piccadilly</span><span class="line-tag line-northern">Northern</span><span class="line-tag line-metropolitan">Metropolitan</span></div>
+      <div class="step-lines"><span class="line-tag line-victoria">Victoria</span> <span class="line-tag line-piccadilly">Piccadilly</span> <span class="line-tag line-northern">Northern</span> <span class="line-tag line-metropolitan">Metropolitan</span></div>
       <div class="step-info"><span class="step-station">King's Cross St Pancras 站</span><br>
-        <span class="step-walk">9&frac34; 月台｜出站步行 2 分鐘，在車站大廳內</span>
+        <span class="step-walk">&#x1F6B6; 9&frac34; 月台｜出站步行 2 分鐘，在車站大廳內</span>
       </div>
     </div>
   </div>
@@ -963,10 +986,10 @@ body{
   <div class="transport-card">
     <h4>&#x26EA; 聖保羅大教堂 &amp; 千禧橋</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#fce4ec"><span class="line-tag line-central">Central</span></div>
+      <div class="step-lines"><span class="line-tag line-central">Central</span></div>
       <div class="step-info"><span class="step-station">St Paul's 站</span><br>
-        <span class="step-walk">聖保羅大教堂｜出站即達，步行 2 分鐘</span><br>
-        <span class="step-walk">千禧橋｜步行 5 分鐘</span>
+        <span class="step-walk">&#x1F6B6; 聖保羅大教堂｜出站即達，步行 2 分鐘</span><br>
+        <span class="step-walk">&#x1F6B6; 千禧橋｜步行 5 分鐘</span>
       </div>
     </div>
   </div>
@@ -974,28 +997,32 @@ body{
   <div class="transport-card">
     <h4>&#x1F3DB;&#xFE0F; 大英博物館</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#f3e5f5"><span class="line-tag line-central">Central</span><span class="line-tag line-piccadilly">Piccadilly</span></div>
-      <div class="step-info"><span class="step-station">Holborn 站</span><span class="step-walk">｜步行 5 分鐘</span><br>
-        <span class="step-walk">或 <span class="step-station">Tottenham Court Road 站</span>（<span class="line-tag line-central">Central</span><span class="line-tag line-northern">Northern</span><span class="line-tag line-elizabeth">Elizabeth</span>）步行 5 分鐘</span>
-      </div>
+      <div class="step-lines"><span class="line-tag line-central">Central</span> <span class="line-tag line-piccadilly">Piccadilly</span></div>
+      <div class="step-info"><span class="step-station">Holborn 站</span><span class="step-walk">｜&#x1F6B6; 步行 5 分鐘</span></div>
+    </div>
+    <div class="transport-step">
+      <div class="step-lines"><span class="line-tag line-central">Central</span> <span class="line-tag line-northern">Northern</span> <span class="line-tag line-elizabeth">Elizabeth</span></div>
+      <div class="step-info"><span class="step-station">Tottenham Court Road 站</span><span class="step-walk">｜&#x1F6B6; 步行 5 分鐘</span></div>
     </div>
   </div>
 
   <div class="transport-card">
     <h4>&#x1F333; 攝政公園 &amp; 倫敦動物園</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#e8f5e9"><span class="line-tag line-northern">Northern</span></div>
-      <div class="step-info"><span class="step-station">Camden Town 站</span><span class="step-walk">｜步行 10 分鐘到動物園</span><br>
-        <span class="step-walk">或 <span class="step-station">Regent's Park 站</span>（<span class="line-tag line-bakerloo">Bakerloo</span>）步行 10 分鐘</span>
-      </div>
+      <div class="step-lines"><span class="line-tag line-northern">Northern</span></div>
+      <div class="step-info"><span class="step-station">Camden Town 站</span><span class="step-walk">｜&#x1F6B6; 步行 10 分鐘到動物園</span></div>
+    </div>
+    <div class="transport-step">
+      <div class="step-lines"><span class="line-tag line-bakerloo">Bakerloo</span></div>
+      <div class="step-info"><span class="step-station">Regent's Park 站</span><span class="step-walk">｜&#x1F6B6; 步行 10 分鐘</span></div>
     </div>
   </div>
 
   <div class="transport-card">
     <h4>&#x1F6D2; 波羅市場</h4>
     <div class="transport-step">
-      <div class="step-icon" style="background:#f0f0f0"><span class="line-tag line-jubilee">Jubilee</span><span class="line-tag line-northern">Northern</span></div>
-      <div class="step-info"><span class="step-station">London Bridge 站</span><span class="step-walk">｜步行 3 分鐘</span></div>
+      <div class="step-lines"><span class="line-tag line-jubilee">Jubilee</span> <span class="line-tag line-northern">Northern</span></div>
+      <div class="step-info"><span class="step-station">London Bridge 站</span><span class="step-walk">｜&#x1F6B6; 步行 3 分鐘</span></div>
     </div>
   </div>
 
