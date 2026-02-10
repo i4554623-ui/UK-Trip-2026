@@ -64,8 +64,7 @@ body{
 
 /* Attraction card */
 .attr-card{background:#fff;border-radius:16px;margin-bottom:12px;
-  box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden;
-  contain:layout style;will-change:auto}
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden}
 .attr-card.expanded{box-shadow:0 4px 20px rgba(0,0,0,0.1)}
 .attr-header{display:flex;align-items:center;padding:14px;cursor:pointer;
   list-style:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -123,9 +122,16 @@ body{
 .info-label{color:#888;flex-shrink:0}
 .info-value{font-weight:600;text-align:right;max-width:60%}
 
-.london-day-divider{display:flex;align-items:center;margin:24px 0 16px;gap:12px}
-.london-day-divider::before,.london-day-divider::after{content:'';flex:1;height:1px;background:#e0d8cc}
-.london-day-divider span{font-size:13px;font-weight:700;color:#888;white-space:nowrap}
+/* London sub-tabs */
+.london-subnav{display:flex;gap:8px;margin:0 0 16px;padding:0 4px}
+.london-subnav button{flex:1;padding:10px 6px;font-size:12px;font-weight:700;
+  border:2px solid #e0d8cc;border-radius:12px;background:#fff;color:#888;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  -webkit-appearance:none;appearance:none}
+.london-subnav button.active{background:linear-gradient(135deg,#b02a2a,#d45050);
+  color:#fff;border-color:transparent}
+.london-day{display:none}
+.london-day.active{display:block}
 
 .footer{text-align:center;padding:32px 24px;color:#aaa;font-size:11px}
 
@@ -411,8 +417,13 @@ body{
   <div class="city-header"><div class="city-en">LONDON</div><h2>倫敦 LONDON</h2>
     <p class="city-desc">英國首都，融合千年皇室歷史與現代都會魅力。從西敏區的國會殿堂到泰晤士河畔的古堡塔橋，世界級博物館與熱鬧市集交織，是親子深度探索的絕佳城市。</p></div>
 
-  <div class="london-day-divider"><span>Day 7 &middot; 2/23（一）格林威治 &amp; 倫敦塔</span></div>
+  <div class="london-subnav">
+    <button class="active" type="button" onclick="showLondonDay('day7',this)">Day 7<br>格林威治</button>
+    <button type="button" onclick="showLondonDay('day8',this)">Day 8<br>西敏區</button>
+    <button type="button" onclick="showLondonDay('day9',this)">Day 9<br>博物館</button>
+  </div>
 
+  <div class="london-day active" id="london-day7">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon icon-greenwich"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Royal_observatory_greenwich.jpg/200px-Royal_observatory_greenwich.jpg" alt="Royal Observatory" loading="lazy"/></div>
     <div class="attr-title"><h3>格林威治天文臺</h3><div class="attr-en">Royal Observatory, Greenwich</div><div class="attr-brief">本初子午線所在地，東西半球的起點</div></div>
@@ -448,9 +459,9 @@ body{
     <div class="attr-title"><h3>塔橋</h3><div class="attr-en">Tower Bridge</div><div class="attr-brief">倫敦經典地標，高空玻璃走道</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>建於1886-1894年，兩座65公尺高的哥德式塔樓是倫敦最具辨識度的天際線。橋面至今每年仍開合約800次。高空走道的玻璃地板可以俯瞰泰晤士河。許多人會把它跟「倫敦橋」搞混——倫敦橋其實是旁邊一座非常樸素的橋。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;12</span><a class="map-link" href="https://maps.google.com/?q=Tower+Bridge+London" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 
-  <div class="london-day-divider"><span>Day 8 &middot; 2/24（二）西敏區與經典地標</span></div>
-
+  <div class="london-day" id="london-day8">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Westminster_Abbey_St_Peter.jpg/200px-Westminster_Abbey_St_Peter.jpg" alt="Westminster Abbey" loading="lazy"/></div>
     <div class="attr-title"><h3>西敏寺</h3><div class="attr-en">Westminster Abbey</div><div class="attr-brief">英國君主加冕之地，千年哥德式教堂</div></div>
@@ -486,9 +497,9 @@ body{
     <div class="attr-title"><h3>國王十字車站 9&frac34; 月台</h3><div class="attr-en">King's Cross Station</div><div class="attr-brief">哈利波特魔法世界的入口</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>車站特別設置了一面嵌著半截行李推車的牆壁供拍照，旁邊還有官方哈利波特商店。工作人員會協助你選學院圍巾、拋起披風拍出最佳的「穿越」瞬間。排隊拍照通常需要15-30分鐘。</p><span class="attr-tag tag-free">免費拍照</span><span class="attr-tag tag-kid">哈利波特迷必訪</span><a class="map-link" href="https://maps.google.com/?q=Platform+9+3/4+King's+Cross+London" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 
-  <div class="london-day-divider"><span>Day 9 &middot; 2/25（三）博物館與攝政公園</span></div>
-
+  <div class="london-day" id="london-day9">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/200px-St_Pauls_aerial_%28cropped%29.jpg" alt="St Paul's Cathedral" loading="lazy"/></div>
     <div class="attr-title"><h3>聖保羅大教堂</h3><div class="attr-en">St. Paul's Cathedral</div><div class="attr-brief">巴洛克建築傑作，倫敦天際線地標</div></div>
@@ -518,6 +529,7 @@ body{
     <div class="attr-title"><h3>波羅市場</h3><div class="attr-en">Borough Market</div><div class="attr-brief">倫敦最古老的食品市場</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>歷史可追溯到1014年，被譽為「倫敦的廚房」。超過100家攤販，必嚐瑞士起司吐司（Raclette）、手工麵包、新鮮生蠔。市場在鐵道高架橋下，即使下雨也有遮蔽。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-tip">17:00 打烊</span><span class="attr-tag tag-food">倫敦必訪美食市場</span><a class="map-link" href="https://maps.google.com/?q=Borough+Market+London" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 </div>
 
 <!-- ==================== 交通 ==================== -->
@@ -719,6 +731,16 @@ function toggleCard(el){
   var all=document.querySelectorAll('.attr-card.expanded');
   for(var i=0;i<all.length;i++) all[i].classList.remove('expanded');
   if(!wasOpen) card.classList.add('expanded');
+}
+function showLondonDay(day,btn){
+  var days=document.querySelectorAll('.london-day');
+  var btns=document.querySelectorAll('.london-subnav button');
+  for(var i=0;i<days.length;i++) days[i].classList.remove('active');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
+  document.getElementById('london-'+day).classList.add('active');
+  btn.classList.add('active');
+  var all=document.querySelectorAll('.attr-card.expanded');
+  for(var i=0;i<all.length;i++) all[i].classList.remove('expanded');
 }
 function toggleHotel(el){
   var c=el.parentElement;
