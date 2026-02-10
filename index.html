@@ -122,16 +122,18 @@ body{
 .info-label{color:#888;flex-shrink:0}
 .info-value{font-weight:600;text-align:right;max-width:60%}
 
-/* London sub-tabs */
-.london-subnav{display:flex;gap:8px;margin:0 0 16px;padding:0 4px}
-.london-subnav button{flex:1;padding:10px 6px;font-size:12px;font-weight:700;
+/* City sub-tabs */
+.city-subnav{display:flex;gap:8px;margin:0 0 16px;padding:0 4px}
+.city-subnav button{flex:1;padding:10px 6px;font-size:12px;font-weight:700;
   border:2px solid #e0d8cc;border-radius:12px;background:#fff;color:#888;
   cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
   -webkit-appearance:none;appearance:none}
-.london-subnav button.active{background:linear-gradient(135deg,#b02a2a,#d45050);
-  color:#fff;border-color:transparent}
-.london-day{display:none}
-.london-day.active{display:block}
+.city-subnav button.active{color:#fff;border-color:transparent}
+.city-bath .city-subnav button.active{background:linear-gradient(135deg,#c17f3e,#d4a06a)}
+.city-oxford .city-subnav button.active{background:linear-gradient(135deg,#1a5fb4,#4a8fd4)}
+.city-london .city-subnav button.active{background:linear-gradient(135deg,#b02a2a,#d45050)}
+.city-day{display:none}
+.city-day.active{display:block}
 
 .footer{text-align:center;padding:32px 24px;color:#aaa;font-size:11px}
 
@@ -319,8 +321,12 @@ body{
   <div class="city-header"><div class="city-en">BATH</div><h2>巴斯 BATH</h2>
     <p class="city-desc">英國西南部的歷史古城，保存完善的羅馬浴場聞名。城市充滿蜂蜜色的喬治亞時期建築，風格典雅。整座城市被列為世界文化遺產，也是文學與藝術的重要據點。</p></div>
 
-  <span class="day-label">Day 2 &middot; 2/18（三）</span>
+  <div class="city-subnav">
+    <button class="active" type="button" onclick="showCityDay('bath','day2',this)">Day 2<br>新月樓</button>
+    <button type="button" onclick="showCityDay('bath','day3',this)">Day 3<br>羅馬浴場</button>
+  </div>
 
+  <div class="city-day active" id="bath-day2">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Royal.crescent.aerial.bath.arp.jpg/200px-Royal.crescent.aerial.bath.arp.jpg" alt="Royal Crescent" loading="lazy"/></div>
     <div class="attr-title"><h3>皇家新月樓</h3><div class="attr-en">Royal Crescent</div><div class="attr-brief">30棟連體弧形喬治亞式公寓</div></div>
@@ -338,9 +344,9 @@ body{
     <div class="attr-title"><h3>市政廳市集</h3><div class="attr-en">Guildhall Market</div><div class="attr-brief">當地人日常採買的傳統市場</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>位於市中心的室內市場，自1775年起營業至今。市場內有各式攤位販售在地農產品、手工藝品、古董以及熟食。這裡是感受巴斯在地生活的最佳去處，也能找到許多平價美食。</p><span class="attr-tag tag-free">免費入場</span><span class="attr-tag tag-tip">17:00 關門</span><a class="map-link" href="https://maps.google.com/?q=Guildhall+Market+Bath+UK" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 
-  <span class="day-label">Day 3 &middot; 2/19（四）</span>
-
+  <div class="city-day" id="bath-day3">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Roman_Baths_in_Bath_Spa%2C_England_-_July_2006.jpg/200px-Roman_Baths_in_Bath_Spa%2C_England_-_July_2006.jpg" alt="Roman Baths" loading="lazy"/></div>
     <div class="attr-title"><h3>羅馬浴場</h3><div class="attr-en">Roman Baths</div><div class="attr-brief">保存完整的古羅馬浴場遺跡</div></div>
@@ -352,6 +358,7 @@ body{
     <div class="attr-title"><h3>修道院</h3><div class="attr-en">Bath Abbey</div><div class="attr-brief">哥德式教堂，巴斯精神地標</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>歷史可追溯到7世紀，現存建築建於1499年，是英國哥德式垂直風格的傑作。教堂最引人注目的是西面正門的「雅各天梯」石雕——天使攀爬梯子升天的場景。內部擁有52扇大窗，採光極佳，被稱為「西方之燈」。</p><span class="attr-tag tag-price">成人 &pound;8</span><a class="map-link" href="https://maps.google.com/?q=Bath+Abbey+UK" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 </div>
 
 <!-- ==================== 牛津 ==================== -->
@@ -359,8 +366,12 @@ body{
   <div class="city-header"><div class="city-en">OXFORD</div><h2>牛津 OXFORD</h2>
     <p class="city-desc">英國著名的大學城，融合中世紀街景與學術氛圍。牛津大學與眾多學院建築，孕育無數學者與思想家。書店、圖書館與博物館林立，是知識、文化與傳統交會的重要城市。</p></div>
 
-  <span class="day-label">Day 4 &middot; 2/20（五）</span>
+  <div class="city-subnav">
+    <button class="active" type="button" onclick="showCityDay('oxford','day4',this)">Day 4<br>學院巡禮</button>
+    <button type="button" onclick="showCityDay('oxford','day5',this)">Day 5<br>市集探索</button>
+  </div>
 
+  <div class="city-day active" id="oxford-day4">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Tom_Quad%2C_Christ_Church%2C_Oxford.jpg/200px-Tom_Quad%2C_Christ_Church%2C_Oxford.jpg" alt="Christ Church" loading="lazy"/></div>
     <div class="attr-title"><h3>基督學院</h3><div class="attr-en">Christ Church</div><div class="attr-brief">哈利波特取景地，牛津最壯觀的學院</div></div>
@@ -384,9 +395,9 @@ body{
     <div class="attr-title"><h3>Blackwell's 書店</h3><div class="attr-en">Blackwell's Bookshop</div><div class="attr-brief">哈利波特出版書店，學術書籍寶庫</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>創立於1879年，地下室的諾靈頓廳曾獲金氏世界紀錄認證為「世界上最大的書籍展示單一房間」，藏書超過25萬冊。書店對面就是博德利圖書館，整條街洋溢著濃厚的學術氣息。</p><span class="attr-tag tag-free">免費參觀</span><span class="attr-tag tag-kid">適合選購童書</span><a class="map-link" href="https://maps.google.com/?q=Blackwell's+Bookshop+Oxford+UK" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 
-  <span class="day-label">Day 5 &middot; 2/21（六）</span>
-
+  <div class="city-day" id="oxford-day5">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Covered_Market_Inside.JPG/200px-Covered_Market_Inside.JPG" alt="Covered Market" loading="lazy"/></div>
     <div class="attr-title"><h3>室內市場</h3><div class="attr-en">The Covered Market</div><div class="attr-brief">Pieminister 英式鹹派、Ben's Cookies</div></div>
@@ -410,6 +421,7 @@ body{
     <div class="attr-title"><h3>自然歷史博物館</h3><div class="attr-en">Oxford University Museum of Natural History</div><div class="attr-brief">恐龍化石與渡渡鳥標本</div></div>
     <div class="attr-arrow">&#x276F;</div></div>
     <div class="attr-detail"><div class="attr-detail-inner"><p>建於1860年，收藏超過700萬件標本。最著名的是大廳中央的恐龍骨架和世界上最完整的渡渡鳥（Dodo）標本遺骸。對小朋友來說，互動式的恐龍展區是最大亮點。</p><span class="attr-tag tag-free">免費</span><span class="attr-tag tag-kid">小朋友最愛恐龍</span><a class="map-link" href="https://maps.google.com/?q=Oxford+University+Museum+of+Natural+History" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
+  </div>
 </div>
 
 <!-- ==================== 倫敦 ==================== -->
@@ -417,13 +429,13 @@ body{
   <div class="city-header"><div class="city-en">LONDON</div><h2>倫敦 LONDON</h2>
     <p class="city-desc">英國首都，融合千年皇室歷史與現代都會魅力。從西敏區的國會殿堂到泰晤士河畔的古堡塔橋，世界級博物館與熱鬧市集交織，是親子深度探索的絕佳城市。</p></div>
 
-  <div class="london-subnav">
-    <button class="active" type="button" onclick="showLondonDay('day7',this)">Day 7<br>格林威治</button>
-    <button type="button" onclick="showLondonDay('day8',this)">Day 8<br>西敏區</button>
-    <button type="button" onclick="showLondonDay('day9',this)">Day 9<br>博物館</button>
+  <div class="city-subnav">
+    <button class="active" type="button" onclick="showCityDay('london','day7',this)">Day 7<br>格林威治</button>
+    <button type="button" onclick="showCityDay('london','day8',this)">Day 8<br>西敏區</button>
+    <button type="button" onclick="showCityDay('london','day9',this)">Day 9<br>博物館</button>
   </div>
 
-  <div class="london-day active" id="london-day7">
+  <div class="city-day active" id="london-day7">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon icon-greenwich"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Royal_observatory_greenwich.jpg/200px-Royal_observatory_greenwich.jpg" alt="Royal Observatory" loading="lazy"/></div>
     <div class="attr-title"><h3>格林威治天文臺</h3><div class="attr-en">Royal Observatory, Greenwich</div><div class="attr-brief">本初子午線所在地，東西半球的起點</div></div>
@@ -461,7 +473,7 @@ body{
     <div class="attr-detail"><div class="attr-detail-inner"><p>建於1886-1894年，兩座65公尺高的哥德式塔樓是倫敦最具辨識度的天際線。橋面至今每年仍開合約800次。高空走道的玻璃地板可以俯瞰泰晤士河。許多人會把它跟「倫敦橋」搞混——倫敦橋其實是旁邊一座非常樸素的橋。</p><span class="attr-tag tag-pass">London Pass</span><span class="attr-tag tag-price">原價 &pound;12</span><a class="map-link" href="https://maps.google.com/?q=Tower+Bridge+London" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
   </div>
 
-  <div class="london-day" id="london-day8">
+  <div class="city-day" id="london-day8">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Westminster_Abbey_St_Peter.jpg/200px-Westminster_Abbey_St_Peter.jpg" alt="Westminster Abbey" loading="lazy"/></div>
     <div class="attr-title"><h3>西敏寺</h3><div class="attr-en">Westminster Abbey</div><div class="attr-brief">英國君主加冕之地，千年哥德式教堂</div></div>
@@ -499,7 +511,7 @@ body{
     <div class="attr-detail"><div class="attr-detail-inner"><p>車站特別設置了一面嵌著半截行李推車的牆壁供拍照，旁邊還有官方哈利波特商店。工作人員會協助你選學院圍巾、拋起披風拍出最佳的「穿越」瞬間。排隊拍照通常需要15-30分鐘。</p><span class="attr-tag tag-free">免費拍照</span><span class="attr-tag tag-kid">哈利波特迷必訪</span><a class="map-link" href="https://maps.google.com/?q=Platform+9+3/4+King's+Cross+London" target="_blank">&#x1F4CD; 地圖</a></div></div></div>
   </div>
 
-  <div class="london-day" id="london-day9">
+  <div class="city-day" id="london-day9">
   <div class="attr-card"><div class="attr-header" onclick="toggleCard(this)">
     <div class="attr-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/200px-St_Pauls_aerial_%28cropped%29.jpg" alt="St Paul's Cathedral" loading="lazy"/></div>
     <div class="attr-title"><h3>聖保羅大教堂</h3><div class="attr-en">St. Paul's Cathedral</div><div class="attr-brief">巴洛克建築傑作，倫敦天際線地標</div></div>
@@ -732,14 +744,15 @@ function toggleCard(el){
   for(var i=0;i<all.length;i++) all[i].classList.remove('expanded');
   if(!wasOpen) card.classList.add('expanded');
 }
-function showLondonDay(day,btn){
-  var days=document.querySelectorAll('.london-day');
-  var btns=document.querySelectorAll('.london-subnav button');
+function showCityDay(city,day,btn){
+  var sec=btn.closest('.section');
+  var days=sec.querySelectorAll('.city-day');
+  var btns=sec.querySelectorAll('.city-subnav button');
   for(var i=0;i<days.length;i++) days[i].classList.remove('active');
   for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
-  document.getElementById('london-'+day).classList.add('active');
+  document.getElementById(city+'-'+day).classList.add('active');
   btn.classList.add('active');
-  var all=document.querySelectorAll('.attr-card.expanded');
+  var all=sec.querySelectorAll('.attr-card.expanded');
   for(var i=0;i<all.length;i++) all[i].classList.remove('expanded');
 }
 function toggleHotel(el){
