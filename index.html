@@ -211,6 +211,38 @@ body{
 .nearby-emoji{font-size:16px;margin-right:8px;flex-shrink:0}
 .nearby-name{font-weight:600}
 .nearby-desc{color:#888;font-size:12px}
+
+/* Weather badge */
+.day-temp{display:inline-block;font-size:11px;color:#1a5fb4;font-weight:600;margin-top:2px}
+.day-temp::before{content:'🌡️ ';font-size:10px}
+
+/* Prep section */
+.prep-header{padding:32px 24px 20px;text-align:center;position:relative}
+.prep-header h2{font-size:26px;font-weight:800;color:#2e7d32;letter-spacing:2px}
+.prep-header .prep-en{font-size:36px;font-weight:800;letter-spacing:4px;opacity:0.10;
+  position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;color:#2e7d32}
+.prep-header p{font-size:13px;color:#666;margin-top:8px;line-height:1.8;text-align:left}
+
+.prep-group{background:#fff;border-radius:16px;margin:0 16px 12px;padding:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.prep-group h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.prep-category{font-size:13px;font-weight:700;color:#2e7d32;margin:12px 0 6px;padding-bottom:4px;
+  border-bottom:1px solid #e8f5e9}
+.prep-category:first-of-type{margin-top:4px}
+.prep-item{display:flex;align-items:center;padding:5px 0;font-size:13px;line-height:1.6}
+.prep-item input[type=checkbox]{width:18px;height:18px;margin-right:10px;flex-shrink:0;
+  accent-color:#2e7d32;cursor:pointer}
+.prep-item.not-needed{text-decoration:line-through;color:#bbb}
+.prep-item.not-needed::after{content:' (不需帶)';font-size:11px;color:#e65100;margin-left:4px;
+  text-decoration:none;display:inline}
+
+.weather-card{background:linear-gradient(135deg,#e3f2fd,#fff);border:1px solid #bbdefb;
+  border-radius:16px;padding:20px;margin:16px 0}
+.weather-card h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.weather-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e3f2fd;font-size:13px}
+.weather-row:last-child{border-bottom:none}
+.weather-city{font-weight:600;color:#1a5fb4}
+.weather-detail{text-align:right;color:#555}
 </style>
 </head>
 <body>
@@ -232,22 +264,23 @@ body{
   <button class="nav-btn" type="button" onclick="showTab('london',this)">倫敦</button>
   <button class="nav-btn" type="button" onclick="showTab('food',this)">美食</button>
   <button class="nav-btn" type="button" onclick="showTab('transport',this)">交通</button>
+  <button class="nav-btn" type="button" onclick="showTab('prep',this)">準備</button>
 </div>
 
 <!-- ==================== 總覽 ==================== -->
 <div class="section active" id="sec-overview">
   <div class="overview-card">
-    <div class="day-summary"><div class="day-num"><span>1</span><small>2/17</small></div><div class="day-info"><h4>啟程與抵達</h4><p>桃園 TPE → 曼谷 BKK → 倫敦 LHR（泰航 TG635、TG910）</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>2</span><small>2/18</small></div><div class="day-info"><h4>抵達巴斯</h4><p>Heathrow Express → Paddington → Bath Spa｜皇家新月樓、普爾特尼橋</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>3</span><small>2/19</small></div><div class="day-info"><h4>巴斯 → 牛津</h4><p>羅馬浴場、修道院｜火車前往牛津</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>4</span><small>2/20</small></div><div class="day-info"><h4>牛津深度遊</h4><p>基督學院、愛麗絲商店、嘆息橋、大學公園</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>5</span><small>2/21</small></div><div class="day-info"><h4>牛津探索</h4><p>室內市場、牛津城堡、自然歷史博物館、The Grand Cafe 下午茶</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>6</span><small>2/22</small></div><div class="day-info"><h4>牛津 → Bicester → 倫敦</h4><p>Bicester Village Outlets 購物｜火車前往倫敦</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>7</span><small>2/23</small></div><div class="day-info"><h4>倫敦：格林威治</h4><p>天文臺、卡提沙克號、倫敦塔、塔橋｜London Pass</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>8</span><small>2/24</small></div><div class="day-info"><h4>倫敦：西敏區</h4><p>西敏寺、白金漢宮衛兵交接、大笨鐘、倫敦眼、9¾月台</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>9</span><small>2/25</small></div><div class="day-info"><h4>倫敦：博物館與公園</h4><p>聖保羅大教堂、大英博物館、攝政公園、倫敦動物園</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>10</span><small>2/26</small></div><div class="day-info"><h4>返程</h4><p>Heathrow Express → LHR｜泰航 TG911 → 曼谷</p></div></div>
-    <div class="day-summary"><div class="day-num"><span>11</span><small>2/27</small></div><div class="day-info"><h4>回到台灣</h4><p>曼谷 BKK → 桃園 TPE（泰航 TG632）12:45 抵達</p></div></div>
+    <div class="day-summary"><div class="day-num"><span>1</span><small>2/17</small></div><div class="day-info"><h4>啟程與抵達</h4><p>桃園 TPE → 曼谷 BKK → 倫敦 LHR（泰航 TG635、TG910）</p><div class="day-temp">飛行中</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>2</span><small>2/18</small></div><div class="day-info"><h4>抵達巴斯</h4><p>Heathrow Express → Paddington → Bath Spa｜皇家新月樓、普爾特尼橋</p><div class="day-temp">Bath 8° / 2°C 多雲偶雨</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>3</span><small>2/19</small></div><div class="day-info"><h4>巴斯 → 牛津</h4><p>羅馬浴場、修道院｜火車前往牛津</p><div class="day-temp">Bath→Oxford 8° / 2°C 多雲</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>4</span><small>2/20</small></div><div class="day-info"><h4>牛津深度遊</h4><p>基督學院、愛麗絲商店、嘆息橋、大學公園</p><div class="day-temp">Oxford 8° / 2°C 多雲偶雨</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>5</span><small>2/21</small></div><div class="day-info"><h4>牛津探索</h4><p>室內市場、牛津城堡、自然歷史博物館、The Grand Cafe 下午茶</p><div class="day-temp">Oxford 8° / 2°C 陰天</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>6</span><small>2/22</small></div><div class="day-info"><h4>牛津 → Bicester → 倫敦</h4><p>Bicester Village Outlets 購物｜火車前往倫敦</p><div class="day-temp">Oxford→London 8° / 2°C 多雲</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>7</span><small>2/23</small></div><div class="day-info"><h4>倫敦：格林威治</h4><p>天文臺、卡提沙克號、倫敦塔、塔橋｜London Pass</p><div class="day-temp">London 8° / 2°C 多雲偶雨</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>8</span><small>2/24</small></div><div class="day-info"><h4>倫敦：西敏區</h4><p>西敏寺、白金漢宮衛兵交接、大笨鐘、倫敦眼、9¾月台</p><div class="day-temp">London 8° / 2°C 多雲</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>9</span><small>2/25</small></div><div class="day-info"><h4>倫敦：博物館與公園</h4><p>聖保羅大教堂、大英博物館、攝政公園、倫敦動物園</p><div class="day-temp">London 9° / 3°C 多雲偶晴</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>10</span><small>2/26</small></div><div class="day-info"><h4>返程</h4><p>Heathrow Express → LHR｜泰航 TG911 → 曼谷</p><div class="day-temp">London 8° / 2°C</div></div></div>
+    <div class="day-summary"><div class="day-num"><span>11</span><small>2/27</small></div><div class="day-info"><h4>回到台灣</h4><p>曼谷 BKK → 桃園 TPE（泰航 TG632）12:45 抵達</p><div class="day-temp">飛行中</div></div></div>
   </div>
   <div class="info-card"><h3>&#x2708;&#xFE0F; 航班資訊</h3>
     <div class="info-row"><span class="info-label">去程</span><span class="info-value">TG635 18:50→21:45<br>TG910 00:05→06:40</span></div>
@@ -303,6 +336,14 @@ body{
       <div class="nearby-item"><span class="nearby-emoji">&#x1F6D2;</span><div><span class="nearby-name">Sainsbury's &amp; M&amp;S Food</span><br><span class="nearby-desc">步行 3 分鐘｜Paddington 站內有超市，買早餐和零食</span></div></div>
       <div class="nearby-item"><span class="nearby-emoji">&#x1F6A4;</span><div><span class="nearby-name">Little Venice</span><br><span class="nearby-desc">步行 8 分鐘｜運河旁的悠閒水上社區，有窄船咖啡廳</span></div></div>
     </div></div>
+  </div>
+
+  <div class="weather-card"><h3>&#x1F324;&#xFE0F; 二月氣候概況</h3>
+    <div class="weather-row"><span class="weather-city">Bath 巴斯</span><span class="weather-detail">高溫 8°C ／低溫 2°C｜多雲偶雨</span></div>
+    <div class="weather-row"><span class="weather-city">Oxford 牛津</span><span class="weather-detail">高溫 8°C ／低溫 2°C｜陰天偶雨</span></div>
+    <div class="weather-row"><span class="weather-city">London 倫敦</span><span class="weather-detail">高溫 8°C ／低溫 2°C｜多雲偶雨</span></div>
+    <div class="weather-row"><span class="weather-city">日出 / 日落</span><span class="weather-detail">約 07:00 / 17:30</span></div>
+    <div class="weather-row"><span class="weather-city">穿搭建議</span><span class="weather-detail">洋蔥式穿法、防水外套、帽子圍巾手套</span></div>
   </div>
 
   <div class="info-card"><h3>&#x1F4B0; London Pass</h3>
@@ -721,6 +762,105 @@ body{
   </div>
 </div>
 
+<!-- ==================== 行前準備 ==================== -->
+<div class="section" id="sec-prep">
+  <div class="prep-header" style="position:relative">
+    <div class="prep-en">PACKING</div>
+    <h2>行前準備清單</h2>
+    <p>勾選已準備好的項目。帶 ❌ 的項目表示不需攜帶。勾選紀錄會自動儲存在你的裝置上。</p>
+    <div style="margin-top:12px;text-align:center">
+      <select id="prepPerson" onchange="loadChecklist()" style="padding:8px 16px;border-radius:20px;border:2px solid #2e7d32;font-size:14px;font-weight:600;color:#2e7d32;background:#fff;cursor:pointer;-webkit-appearance:none;appearance:none">
+        <option value="peter">Peter</option>
+        <option value="jean">Jean</option>
+        <option value="michael">Michael</option>
+        <option value="angel">Angel</option>
+        <option value="kevin">Kevin</option>
+        <option value="maddy">Maddy</option>
+        <option value="maky">Maky</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="prep-group">
+    <h3>&#x1F476; 小朋友用品</h3>
+
+    <div class="prep-category">&#x1F6C1; 洗澡</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>澡盆 ❌ 不需帶</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>沐浴乳 ❌ 飯店有</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>洗澡巾 ❌ 不需帶</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bath-1">牙刷、噴霧</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bath-2">牙線</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bath-3">浴巾</div>
+
+    <div class="prep-category">&#x1F37D;&#xFE0F; 吃飯</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-1">食物剪刀</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-2">保溫罐</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-3">圍兜兜</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-4">常溫粥</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-5">湯匙</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-6">碗</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-eat-7">餅乾</div>
+
+    <div class="prep-category">&#x1F634; 睡覺</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>順熱水壺 ❌ 飯店有</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>枕頭 ❌ 飯店有</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-1">乳液 / 綠油精 / 護唇膏</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-2">音響</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-3">包巾</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-4">防踢被</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-5">奶瓶晾乾架</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-6">尿布</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-7">睡衣</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-sleep-8">襪子</div>
+
+    <div class="prep-category">&#x1F9F3; 行李箱</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-lug-1">常溫飯 6 包</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>地瓜 ❌ 不需帶</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-lug-2">餅乾</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-lug-3">水果凍乾</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-lug-4">奶粉</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-lug-5">濕紙巾 1 包</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-lug-6">尿布 3 袋</div>
+
+    <div class="prep-category">&#x1F392; 雙肩背包（隨身）</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-1">鞋子</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-2">食物</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-3">乾洗手</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-4">防蚊</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-5">防曬</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-6">尿布</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-7">帽子</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-8">小包濕巾</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-9">大包濕巾</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-10">奶瓶、奶粉</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-bag-11">水壺</div>
+
+    <div class="prep-category">&#x1F3DE;&#xFE0F; 戶外</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>電扇 ❌ 冬天不需要</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>眼鏡 ❌ 不需帶</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-out-1">鞋子</div>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>背包 ❌ 不需帶</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-out-2">玩具</div>
+  </div>
+
+  <div class="prep-group">
+    <h3>&#x1F9D1; 大人用品</h3>
+    <div class="prep-item not-needed"><input type="checkbox" disabled checked>鞋子 ❌ 穿著出門</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-1">充電器 / 行動電源</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-2">睡衣</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-3">髮夾 / 髮圈 / 梳子</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-4">隱形眼鏡 / 生理食鹽水</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-5">鏡子</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-6">乳液 / 髮油</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-7">牙刷 / 牙線 / 牙膏 / 漱口水</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-8">防曬粉餅</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-9">眉筆 / 眉刷 / 夾子</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-10">雨傘 &times; 2</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-11">換洗衣物</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-12">吹風機</div>
+  </div>
+</div>
+
 <div class="footer">英國11日親子之旅 &middot; 2026.02.17-02.27<br>Made with &#x2764;&#xFE0F; for the family</div>
 
 <script>
@@ -755,6 +895,32 @@ function toggleHotel(el){
   var c=el.parentElement;
   c.classList.toggle('expanded');
 }
+function saveChecklist(){
+  var person=document.getElementById('prepPerson').value;
+  var boxes=document.querySelectorAll('#sec-prep input[data-id]');
+  var data={};
+  for(var i=0;i<boxes.length;i++){
+    data[boxes[i].getAttribute('data-id')]=boxes[i].checked;
+  }
+  try{localStorage.setItem('prep-'+person,JSON.stringify(data));}catch(e){}
+}
+function loadChecklist(){
+  var person=document.getElementById('prepPerson').value;
+  var boxes=document.querySelectorAll('#sec-prep input[data-id]');
+  var data={};
+  try{var s=localStorage.getItem('prep-'+person);if(s)data=JSON.parse(s);}catch(e){}
+  for(var i=0;i<boxes.length;i++){
+    var id=boxes[i].getAttribute('data-id');
+    boxes[i].checked=!!data[id];
+  }
+}
+document.addEventListener('DOMContentLoaded',function(){
+  loadChecklist();
+  var boxes=document.querySelectorAll('#sec-prep input[data-id]');
+  for(var i=0;i<boxes.length;i++){
+    boxes[i].addEventListener('change',saveChecklist);
+  }
+});
 </script>
 </body>
 </html>
