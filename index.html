@@ -767,7 +767,7 @@ body{
   <div class="prep-header" style="position:relative">
     <div class="prep-en">PACKING</div>
     <h2>行前準備清單</h2>
-    <p>勾選已準備好的項目。帶 ❌ 的項目表示不需攜帶。勾選紀錄會自動儲存在你的裝置上。</p>
+    <p>勾選已準備好的項目，紀錄會自動儲存在你的裝置上。可切換人員各自勾選。</p>
     <div style="margin-top:12px;text-align:center">
       <select id="prepPerson" onchange="loadChecklist()" style="padding:8px 16px;border-radius:20px;border:2px solid #2e7d32;font-size:14px;font-weight:600;color:#2e7d32;background:#fff;cursor:pointer;-webkit-appearance:none;appearance:none">
         <option value="peter">Peter</option>
@@ -785,9 +785,6 @@ body{
     <h3>&#x1F476; 小朋友用品</h3>
 
     <div class="prep-category">&#x1F6C1; 洗澡</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>澡盆 ❌ 不需帶</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>沐浴乳 ❌ 飯店有</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>洗澡巾 ❌ 不需帶</div>
     <div class="prep-item"><input type="checkbox" data-id="k-bath-1">牙刷、噴霧</div>
     <div class="prep-item"><input type="checkbox" data-id="k-bath-2">牙線</div>
     <div class="prep-item"><input type="checkbox" data-id="k-bath-3">浴巾</div>
@@ -802,8 +799,6 @@ body{
     <div class="prep-item"><input type="checkbox" data-id="k-eat-7">餅乾</div>
 
     <div class="prep-category">&#x1F634; 睡覺</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>順熱水壺 ❌ 飯店有</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>枕頭 ❌ 飯店有</div>
     <div class="prep-item"><input type="checkbox" data-id="k-sleep-1">乳液 / 綠油精 / 護唇膏</div>
     <div class="prep-item"><input type="checkbox" data-id="k-sleep-2">音響</div>
     <div class="prep-item"><input type="checkbox" data-id="k-sleep-3">包巾</div>
@@ -814,8 +809,6 @@ body{
     <div class="prep-item"><input type="checkbox" data-id="k-sleep-8">襪子</div>
 
     <div class="prep-category">&#x1F9F3; 行李箱</div>
-    <div class="prep-item"><input type="checkbox" data-id="k-lug-1">常溫飯 6 包</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>地瓜 ❌ 不需帶</div>
     <div class="prep-item"><input type="checkbox" data-id="k-lug-2">餅乾</div>
     <div class="prep-item"><input type="checkbox" data-id="k-lug-3">水果凍乾</div>
     <div class="prep-item"><input type="checkbox" data-id="k-lug-4">奶粉</div>
@@ -836,16 +829,23 @@ body{
     <div class="prep-item"><input type="checkbox" data-id="k-bag-11">水壺</div>
 
     <div class="prep-category">&#x1F3DE;&#xFE0F; 戶外</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>電扇 ❌ 冬天不需要</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>眼鏡 ❌ 不需帶</div>
     <div class="prep-item"><input type="checkbox" data-id="k-out-1">鞋子</div>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>背包 ❌ 不需帶</div>
     <div class="prep-item"><input type="checkbox" data-id="k-out-2">玩具</div>
+
+    <div class="prep-category">&#x1F9E5; 保暖衣物（2月英國約 2~8°C）</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-1">防風防水外套</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-2">刷毛 / 羽絨內層外套</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-3">長袖衛生衣（發熱衣）</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-4">長褲（厚）</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-5">毛帽</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-6">圍巾 / 脖圍</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-7">手套</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-8">厚襪子</div>
+    <div class="prep-item"><input type="checkbox" data-id="k-warm-9">防水保暖鞋</div>
   </div>
 
   <div class="prep-group">
     <h3>&#x1F9D1; 大人用品</h3>
-    <div class="prep-item not-needed"><input type="checkbox" disabled checked>鞋子 ❌ 穿著出門</div>
     <div class="prep-item"><input type="checkbox" data-id="a-1">充電器 / 行動電源</div>
     <div class="prep-item"><input type="checkbox" data-id="a-2">睡衣</div>
     <div class="prep-item"><input type="checkbox" data-id="a-3">髮夾 / 髮圈 / 梳子</div>
@@ -858,6 +858,18 @@ body{
     <div class="prep-item"><input type="checkbox" data-id="a-10">雨傘 &times; 2</div>
     <div class="prep-item"><input type="checkbox" data-id="a-11">換洗衣物</div>
     <div class="prep-item"><input type="checkbox" data-id="a-12">吹風機</div>
+
+    <div class="prep-category">&#x1F9E5; 保暖衣物（2月英國約 2~8°C）</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-1">防風防水外套（長版更佳）</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-2">羽絨外套 / 刷毛夾克</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-3">發熱衣 / 衛生衣</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-4">毛衣 / 針織衫</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-5">厚長褲</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-6">毛帽</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-7">圍巾</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-8">手套</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-9">厚襪子</div>
+    <div class="prep-item"><input type="checkbox" data-id="a-warm-10">防水保暖鞋 / 靴子</div>
   </div>
 </div>
 
