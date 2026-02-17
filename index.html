@@ -226,9 +226,17 @@ body{
 
 /* Flight cards */
 .flight-section{margin:0 16px 16px}
-.flight-card{background:#fff;border-radius:16px;margin-bottom:12px;padding:16px;
-  box-shadow:0 2px 12px rgba(0,0,0,0.06)}
-.flight-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.flight-card{background:#fff;border-radius:16px;margin-bottom:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden}
+.flight-header{padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  display:flex;align-items:center;justify-content:space-between}
+.flight-header h4{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;margin:0}
+.flight-header .flight-brief{font-size:11px;color:#888;margin-top:2px}
+.flight-header .attr-arrow{font-size:14px;color:#ccc;flex-shrink:0;transition:transform 0.3s}
+.flight-card.expanded .flight-header .attr-arrow{transform:rotate(90deg);color:#666}
+.flight-detail{display:none;padding:0 16px 16px;border-top:1px solid #f0ece4}
+.flight-card.expanded .flight-detail{display:block}
+.flight-card.expanded{box-shadow:0 4px 20px rgba(0,0,0,0.1)}
 .flight-route{display:flex;align-items:center;justify-content:space-between;padding:8px 0;
   border-bottom:1px solid #f0ece4;margin-bottom:8px}
 .flight-city{text-align:center}
@@ -619,63 +627,83 @@ body{
   <div class="flight-section">
     <span class="transport-day">去程 &middot; 2/17-18 桃園 &rarr; 曼谷 &rarr; 倫敦</span>
 
-    <div class="flight-card">
-      <h4>&#x2708;&#xFE0F; 第一段：桃園 &rarr; 曼谷</h4>
-      <div class="flight-route">
-        <div class="flight-city"><div class="city-code">TPE</div><div class="city-time">18:50 出發<br>Terminal 1</div></div>
-        <div class="flight-arrow"><div class="flight-no">TG 635</div>3h 55min<br>登機 18:10</div>
-        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">21:45 抵達</div></div>
+    <div class="flight-card" onclick="this.classList.toggle('expanded')">
+      <div class="flight-header">
+        <div><h4>&#x2708;&#xFE0F; TG 635：桃園 &rarr; 曼谷</h4><div class="flight-brief">2/17 18:50-21:45｜3h 55min</div></div>
+        <div class="attr-arrow">&#x276F;</div>
       </div>
-      <div class="seat-grid">
-        <div class="seat-item"><span class="seat-name">Angel</span><span class="seat-num">61B</span></div>
-        <div class="seat-item"><span class="seat-name">Michael</span><span class="seat-num">62B</span></div>
-        <div class="seat-item"><span class="seat-name">Maky</span><span class="seat-num">61A</span></div>
-        <div class="seat-item"><span class="seat-name">Maddy</span><span class="seat-num">62A</span></div>
-        <div class="seat-item"><span class="seat-name">Peter</span><span class="seat-num">41A</span></div>
-        <div class="seat-item"><span class="seat-name">Kevin</span><span class="seat-num">41B</span></div>
-        <div class="seat-item"><span class="seat-name">Jean</span><span class="seat-num">41D</span></div>
+      <div class="flight-detail">
+        <div class="flight-route">
+          <div class="flight-city"><div class="city-code">TPE</div><div class="city-time">18:50 出發<br>Terminal 1</div></div>
+          <div class="flight-arrow"><div class="flight-no">TG 635</div>3h 55min<br>登機 18:10</div>
+          <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">21:45 抵達</div></div>
+        </div>
+        <div class="seat-grid">
+          <div class="seat-item"><span class="seat-name">Angel</span><span class="seat-num">61B</span></div>
+          <div class="seat-item"><span class="seat-name">Michael</span><span class="seat-num">62B</span></div>
+          <div class="seat-item"><span class="seat-name">Maky</span><span class="seat-num">61A</span></div>
+          <div class="seat-item"><span class="seat-name">Maddy</span><span class="seat-num">62A</span></div>
+          <div class="seat-item"><span class="seat-name">Peter</span><span class="seat-num">41A</span></div>
+          <div class="seat-item"><span class="seat-name">Kevin</span><span class="seat-num">41B</span></div>
+          <div class="seat-item"><span class="seat-name">Jean</span><span class="seat-num">41D</span></div>
+        </div>
+        <div class="flight-note">訂位代號：FR27UB（M&amp;A）/ DNVLSD（PJK）</div>
       </div>
-      <div class="flight-note">訂位代號：FR27UB（M&amp;A）/ DNVLSD（PJK）</div>
     </div>
 
-    <div class="flight-card">
-      <h4>&#x2708;&#xFE0F; 第二段：曼谷 &rarr; 倫敦</h4>
-      <div class="flight-route">
-        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">00:05 出發<br>2/18</div></div>
-        <div class="flight-arrow"><div class="flight-no">TG 910</div>13h 35min<br>登機 23:35 (2/17)</div>
-        <div class="flight-city"><div class="city-code">LHR</div><div class="city-time">06:40 抵達<br>Terminal 2</div></div>
+    <div class="flight-card" onclick="this.classList.toggle('expanded')">
+      <div class="flight-header">
+        <div><h4>&#x2708;&#xFE0F; TG 910：曼谷 &rarr; 倫敦</h4><div class="flight-brief">2/18 00:05-06:40｜13h 35min</div></div>
+        <div class="attr-arrow">&#x276F;</div>
       </div>
-      <div class="seat-grid">
-        <div class="seat-item"><span class="seat-name">Angel</span><span class="seat-num">34J</span></div>
-        <div class="seat-item"><span class="seat-name">Michael</span><span class="seat-num">35J</span></div>
-        <div class="seat-item"><span class="seat-name">Maky</span><span class="seat-num">34K</span></div>
-        <div class="seat-item"><span class="seat-name">Maddy</span><span class="seat-num">35K</span></div>
-        <div class="seat-item"><span class="seat-name">Peter</span><span class="seat-num">35H</span></div>
-        <div class="seat-item"><span class="seat-name">Kevin</span><span class="seat-num">35F</span></div>
-        <div class="seat-item"><span class="seat-name">Jean</span><span class="seat-num">36H</span></div>
+      <div class="flight-detail">
+        <div class="flight-route">
+          <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">00:05 出發<br>2/18</div></div>
+          <div class="flight-arrow"><div class="flight-no">TG 910</div>13h 35min<br>登機 23:35 (2/17)</div>
+          <div class="flight-city"><div class="city-code">LHR</div><div class="city-time">06:40 抵達<br>Terminal 2</div></div>
+        </div>
+        <div class="seat-grid">
+          <div class="seat-item"><span class="seat-name">Angel</span><span class="seat-num">34J</span></div>
+          <div class="seat-item"><span class="seat-name">Michael</span><span class="seat-num">35J</span></div>
+          <div class="seat-item"><span class="seat-name">Maky</span><span class="seat-num">34K</span></div>
+          <div class="seat-item"><span class="seat-name">Maddy</span><span class="seat-num">35K</span></div>
+          <div class="seat-item"><span class="seat-name">Peter</span><span class="seat-num">35H</span></div>
+          <div class="seat-item"><span class="seat-name">Kevin</span><span class="seat-num">35F</span></div>
+          <div class="seat-item"><span class="seat-name">Jean</span><span class="seat-num">36H</span></div>
+        </div>
       </div>
     </div>
 
     <span class="transport-day">回程 &middot; 2/26-27 倫敦 &rarr; 曼谷 &rarr; 桃園</span>
 
-    <div class="flight-card">
-      <h4>&#x2708;&#xFE0F; 第一段：倫敦 &rarr; 曼谷</h4>
-      <div class="flight-route">
-        <div class="flight-city"><div class="city-code">LHR</div><div class="city-time">11:50 出發<br>2/26</div></div>
-        <div class="flight-arrow"><div class="flight-no">TG 911</div></div>
-        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">06:15 抵達<br>2/27</div></div>
+    <div class="flight-card" onclick="this.classList.toggle('expanded')">
+      <div class="flight-header">
+        <div><h4>&#x2708;&#xFE0F; TG 911：倫敦 &rarr; 曼谷</h4><div class="flight-brief">2/26 11:50 - 2/27 06:15</div></div>
+        <div class="attr-arrow">&#x276F;</div>
       </div>
-      <div class="flight-note">座位尚未分配（回程尚未 check-in）</div>
+      <div class="flight-detail">
+        <div class="flight-route">
+          <div class="flight-city"><div class="city-code">LHR</div><div class="city-time">11:50 出發<br>2/26</div></div>
+          <div class="flight-arrow"><div class="flight-no">TG 911</div></div>
+          <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">06:15 抵達<br>2/27</div></div>
+        </div>
+        <div class="flight-note">座位尚未分配（回程尚未 check-in）</div>
+      </div>
     </div>
 
-    <div class="flight-card">
-      <h4>&#x2708;&#xFE0F; 第二段：曼谷 &rarr; 桃園</h4>
-      <div class="flight-route">
-        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">08:15 出發<br>2/27</div></div>
-        <div class="flight-arrow"><div class="flight-no">TG 632</div></div>
-        <div class="flight-city"><div class="city-code">TPE</div><div class="city-time">12:45 抵達<br>2/27</div></div>
+    <div class="flight-card" onclick="this.classList.toggle('expanded')">
+      <div class="flight-header">
+        <div><h4>&#x2708;&#xFE0F; TG 632：曼谷 &rarr; 桃園</h4><div class="flight-brief">2/27 08:15-12:45</div></div>
+        <div class="attr-arrow">&#x276F;</div>
       </div>
-      <div class="flight-note">座位尚未分配（回程尚未 check-in）</div>
+      <div class="flight-detail">
+        <div class="flight-route">
+          <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">08:15 出發<br>2/27</div></div>
+          <div class="flight-arrow"><div class="flight-no">TG 632</div></div>
+          <div class="flight-city"><div class="city-code">TPE</div><div class="city-time">12:45 抵達<br>2/27</div></div>
+        </div>
+        <div class="flight-note">座位尚未分配（回程尚未 check-in）</div>
+      </div>
     </div>
   </div>
 
