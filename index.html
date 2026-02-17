@@ -224,6 +224,25 @@ body{
 .weather-link{color:#1a5fb4;text-decoration:none;border-bottom:1px dashed #90caf9;font-size:12px;margin-left:4px}
 .weather-link:active{color:#0d47a1}
 
+/* Flight cards */
+.flight-section{margin:0 16px 16px}
+.flight-card{background:#fff;border-radius:16px;margin-bottom:12px;padding:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.flight-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.flight-route{display:flex;align-items:center;justify-content:space-between;padding:8px 0;
+  border-bottom:1px solid #f0ece4;margin-bottom:8px}
+.flight-city{text-align:center}
+.flight-city .city-code{font-size:18px;font-weight:800;color:#1a3a5c}
+.flight-city .city-time{font-size:12px;color:#888;margin-top:2px}
+.flight-arrow{font-size:11px;color:#999;flex:1;text-align:center;line-height:1.4}
+.flight-arrow .flight-no{font-weight:700;color:#6a1b9a;font-size:12px}
+.seat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seat-item{display:flex;justify-content:space-between;padding:4px 8px;background:#f5f0e8;
+  border-radius:8px;font-size:12px}
+.seat-name{font-weight:600}
+.seat-num{color:#6a1b9a;font-weight:700}
+.flight-note{font-size:11px;color:#999;margin-top:8px;text-align:center}
+
 /* Prep section */
 .prep-header{padding:32px 24px 20px;text-align:center;position:relative}
 .prep-header h2{font-size:26px;font-weight:800;color:#2e7d32;letter-spacing:2px}
@@ -595,6 +614,69 @@ body{
     <div class="transport-en">TRANSPORT</div>
     <h2>倫敦交通指南</h2>
     <p>倫敦地鐵（Tube）是遊覽倫敦最方便的方式。行程中的景點主要在 Zone 1-2，搭配 DLR 輕軌和泰晤士河快船（Thames Clipper），輕鬆抵達每個目的地。</p>
+  </div>
+
+  <div class="flight-section">
+    <span class="transport-day">去程 &middot; 2/17-18 桃園 &rarr; 曼谷 &rarr; 倫敦</span>
+
+    <div class="flight-card">
+      <h4>&#x2708;&#xFE0F; 第一段：桃園 &rarr; 曼谷</h4>
+      <div class="flight-route">
+        <div class="flight-city"><div class="city-code">TPE</div><div class="city-time">18:50 出發<br>Terminal 1</div></div>
+        <div class="flight-arrow"><div class="flight-no">TG 635</div>3h 55min<br>登機 18:10</div>
+        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">21:45 抵達</div></div>
+      </div>
+      <div class="seat-grid">
+        <div class="seat-item"><span class="seat-name">Angel</span><span class="seat-num">61B</span></div>
+        <div class="seat-item"><span class="seat-name">Michael</span><span class="seat-num">62B</span></div>
+        <div class="seat-item"><span class="seat-name">Maky</span><span class="seat-num">61A</span></div>
+        <div class="seat-item"><span class="seat-name">Maddy</span><span class="seat-num">62A</span></div>
+        <div class="seat-item"><span class="seat-name">Peter</span><span class="seat-num">41A</span></div>
+        <div class="seat-item"><span class="seat-name">Kevin</span><span class="seat-num">41B</span></div>
+        <div class="seat-item"><span class="seat-name">Jean</span><span class="seat-num">41D</span></div>
+      </div>
+      <div class="flight-note">訂位代號：FR27UB（M&amp;A）/ DNVLSD（PJK）</div>
+    </div>
+
+    <div class="flight-card">
+      <h4>&#x2708;&#xFE0F; 第二段：曼谷 &rarr; 倫敦</h4>
+      <div class="flight-route">
+        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">00:05 出發<br>2/18</div></div>
+        <div class="flight-arrow"><div class="flight-no">TG 910</div>13h 35min<br>登機 23:35 (2/17)</div>
+        <div class="flight-city"><div class="city-code">LHR</div><div class="city-time">06:40 抵達<br>Terminal 2</div></div>
+      </div>
+      <div class="seat-grid">
+        <div class="seat-item"><span class="seat-name">Angel</span><span class="seat-num">34J</span></div>
+        <div class="seat-item"><span class="seat-name">Michael</span><span class="seat-num">35J</span></div>
+        <div class="seat-item"><span class="seat-name">Maky</span><span class="seat-num">34K</span></div>
+        <div class="seat-item"><span class="seat-name">Maddy</span><span class="seat-num">35K</span></div>
+        <div class="seat-item"><span class="seat-name">Peter</span><span class="seat-num">35H</span></div>
+        <div class="seat-item"><span class="seat-name">Kevin</span><span class="seat-num">35F</span></div>
+        <div class="seat-item"><span class="seat-name">Jean</span><span class="seat-num">36H</span></div>
+      </div>
+    </div>
+
+    <span class="transport-day">回程 &middot; 2/26-27 倫敦 &rarr; 曼谷 &rarr; 桃園</span>
+
+    <div class="flight-card">
+      <h4>&#x2708;&#xFE0F; 第一段：倫敦 &rarr; 曼谷</h4>
+      <div class="flight-route">
+        <div class="flight-city"><div class="city-code">LHR</div><div class="city-time">11:50 出發<br>2/26</div></div>
+        <div class="flight-arrow"><div class="flight-no">TG 911</div></div>
+        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">06:15 抵達<br>2/27</div></div>
+      </div>
+      <div class="flight-note">座位尚未分配（回程尚未 check-in）</div>
+    </div>
+
+    <div class="flight-card">
+      <h4>&#x2708;&#xFE0F; 第二段：曼谷 &rarr; 桃園</h4>
+      <div class="flight-route">
+        <div class="flight-city"><div class="city-code">BKK</div><div class="city-time">08:15 出發<br>2/27</div></div>
+        <div class="flight-arrow"><div class="flight-no">TG 632</div></div>
+        <div class="flight-city"><div class="city-code">TPE</div><div class="city-time">12:45 抵達<br>2/27</div></div>
+      </div>
+      <div class="flight-note">座位尚未分配（回程尚未 check-in）</div>
+    </div>
   </div>
 
   <div class="tube-map-container">
